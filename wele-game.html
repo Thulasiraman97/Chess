@@ -1,0 +1,32 @@
+<!-- Partial: game page (extracted from wele-chess.html)
+     Insert this into the main page or load dynamically when starting a game.
+-->
+<div id="game" class="hidden">
+
+    <!-- Left-side controls: timer + exit -->
+    <div id="left-controls">
+        <div id="common-timer-wrap">
+            <div id="common-timer-box">
+                <span class="ct-label">⏱ Time Left</span>
+                <span class="ct-val" id="gameTime">02:00</span>
+            </div>
+        </div>
+        <button class="exit-btn" onclick="resetGame()">✕ Exit</button>
+    </div>
+
+    <!-- Turn indicators (no individual timers) -->
+    <div class="timers">
+        <div class="timer-box" id="playerBox">
+            <span>� <span id="player-name-label">You</span></span>
+        </div>
+        <div class="timer-box" id="aiBox">
+            <span>🤖 AI</span>
+        </div>
+    </div>
+
+    <div class="board-wrap">
+        <div id="board"></div>
+    </div>
+
+    <div id="status">Select a piece to begin</div>
+</div>

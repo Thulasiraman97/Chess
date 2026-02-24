@@ -1,0 +1,54 @@
+<!-- Partial: login layout (extracted from wele-chess.html)
+     Place this snippet into the main page or load dynamically.
+-->
+<div id="login-layout">
+    <div id="login-title">&#9823;&#65039; WeLe Chess</div>
+    <div id="login-cols">
+        <!-- Left: login form -->
+        <div id="login-col-left">
+            <div class="name-card">
+                <svg class="site-logo" width="134" height="31" viewBox="0 0 134 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- SVG paths omitted for brevity; keep full SVG from original if needed -->
+                </svg>
+                <h2>Player Login</h2>
+                <p>Enter your details to join the game</p>
+
+                <div class="login-field">
+                    <label class="login-label" for="player-name-input">&#128100; Full Name</label>
+                    <input id="player-name-input" class="login-input" type="text" maxlength="30"
+                        placeholder="Your real name…" autocomplete="name"
+                        onkeydown="if(event.key==='Enter') document.getElementById('phone-number-input').focus()" />
+                </div>
+
+                <div class="login-field">
+                    <label class="login-label" for="phone-number-input">💬 WhatsApp Number</label>
+                    <div class="phone-row">
+                        <input id="phone-prefix" class="login-input" type="text" maxlength="5" placeholder="+91"
+                            value="+91" autocomplete="off" />
+                        <input id="phone-number-input" class="login-input" type="tel" maxlength="15"
+                            placeholder="9876543210" autocomplete="tel"
+                            onkeydown="if(event.key==='Enter') confirmName()" />
+                    </div>
+                </div>
+
+                <div id="name-error"></div>
+                <button id="name-play-btn" onclick="confirmName()">&#9654; Let's Play!</button>
+            </div>
+        </div>
+
+        <!-- Right: live leaderboard -->
+        <div id="login-col-right">
+            <div class="login-lb-card">
+                <h3>&#127942; Live Leaderboard</h3>
+                <h1 style="color: green; font-family: 'Times New Roman', Times, serif; font-size: 24px;">Leaderboard</h1>
+                <div style="padding: 0 10px; margin-bottom: 12px;">
+                    <div style="display:flex; gap:8px;">
+                        <button onclick="toggleSort('bestTime')" style="flex:1; padding:8px 12px; border-radius:10px;">Sort: Best Time</button>
+                        <button onclick="toggleSort('name')" style="flex:1; padding:8px 12px; border-radius:10px;">Sort: Name</button>
+                    </div>
+                </div>
+                <div id="login-lb-body"></div>
+            </div>
+        </div>
+    </div>
+</div>
