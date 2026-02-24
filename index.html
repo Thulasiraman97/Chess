@@ -35,12 +35,21 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             font-family: 'Outfit', system-ui, sans-serif;
             color: white;
             overflow-x: hidden;
             overflow-y: auto;
-            padding: 24px 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            width: min(1600px, 96vw);
+            background: transparent;
+            text-align: center;
+            margin: auto;
+            /* Vertically centers the panel */
         }
 
 
@@ -48,7 +57,7 @@
         .orb {
             position: fixed;
             border-radius: 50%;
-            filter: blur(72px);
+            filter: blur(40px);
             pointer-events: none;
             z-index: 0;
             opacity: 0.55;
@@ -121,13 +130,7 @@
             z-index: 0;
         }
 
-        .container {
-            position: relative;
-            z-index: 1;
-            width: min(900px, 96vw);
-            background: transparent;
-            text-align: center;
-        }
+        /* Removed duplicate .container to avoid conflicts */
 
         /* ── two-column menu layout ── */
         #menu {
@@ -158,7 +161,7 @@
         }
 
         #menu-col-left {
-            flex: 0 0 320px;
+            flex: 1;
             display: flex;
             flex-direction: column;
         }
@@ -181,7 +184,7 @@
         }
 
         #menu-col-right {
-            flex: 1;
+            flex: 0 0 360px;
             min-width: 0;
             display: flex;
             flex-direction: column;
@@ -198,7 +201,8 @@
         }
 
         .menu-lb-panel h3 {
-            font-size: 1rem;
+            font-size: 1.1rem;
+            font-family: 'Calibri', 'Outfit', sans-serif;
             font-weight: 700;
             letter-spacing: .5px;
             margin-bottom: 14px;
@@ -227,13 +231,13 @@
             backdrop-filter: blur(24px);
             border: 1px solid rgba(56, 189, 248, 0.18);
             border-radius: 22px;
-            padding: 24px 20px 20px;
+            padding: 32px 30px 30px;
             box-shadow:
                 0 0 0 1px rgba(255, 255, 255, .06),
                 0 32px 72px rgba(0, 0, 0, .7),
                 0 0 80px rgba(56, 189, 248, .08);
             animation: containerGlow 4s ease-in-out infinite alternate;
-            width: min(700px, 110vw);
+            width: min(1600px, 95vw);
             margin: 0 auto;
         }
 
@@ -395,6 +399,9 @@
         .exit-btn {
             background: linear-gradient(135deg, #475569, #1e293b);
             margin-top: 12px;
+            width: auto;
+            color: #fff;
+            padding: 8px 18px;
         }
 
         .exit-btn:hover {
@@ -520,7 +527,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: clamp(32px, 6.5vw, 58px);
+            font-size: clamp(32px, 9vmin, 90px);
             cursor: pointer;
             user-select: none;
             transition: background .22s;
@@ -939,7 +946,7 @@
             width: 250px;
             height: auto;
             border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(0,0,0,.45);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .45);
         }
 
         /* Slightly smaller logo when shown inside the game view */
@@ -960,10 +967,14 @@
             align-items: flex-start;
         }
 
-        #left-controls .site-logo { margin: 0; }
+        #left-controls .site-logo {
+            margin: 0;
+        }
 
         /* Ensure the timer inside left-controls aligns left */
-        #left-controls #common-timer-wrap { justify-content: flex-start; }
+        #left-controls #common-timer-wrap {
+            justify-content: flex-start;
+        }
 
         /* Make exit button compact when placed in left-controls */
         #left-controls .exit-btn {
@@ -1116,8 +1127,14 @@
             color: rgba(248, 113, 113, .85) !important;
             font-size: .85rem !important;
             padding: 10px 16px !important;
-            margin-top: 2px;
+            margin: 2px auto 0 !important;
+            width: 240px !important;
             letter-spacing: .3px;
+        }
+
+        .start-game-btn {
+            width: 240px !important;
+            margin: 0 auto 12px !important;
         }
 
         #logout-btn:hover {
@@ -1139,7 +1156,8 @@
         }
 
         .lb-card h3 {
-            font-size: 1rem;
+            font-size: 1.1rem;
+            font-family: 'Calibri', 'Outfit', sans-serif;
             font-weight: 700;
             letter-spacing: .5px;
             margin-bottom: 14px;
@@ -1193,7 +1211,7 @@
 
         .lb-table td:first-child {
             text-align: left;
-            max-width: 120px;
+            max-width: 260px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -1238,10 +1256,255 @@
             padding: 16px 0;
         }
 
-        #menu-lb-wrap {
-            margin-top: 18px;
+        /* ── Rules Panel ── */
+        .rules-card {
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            text-align: left;
         }
 
+        .rules-card h3 {
+            color: var(--accent);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .rules-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .rules-card li {
+            font-size: .9rem;
+            color: rgba(255, 255, 255, .8);
+            margin-bottom: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .rules-card li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* ── Game Layout Adjustments ── */
+        .game-top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding: 0 10px;
+        }
+
+        #game-layout-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 1600px;
+        }
+
+        #game-main-row {
+            display: grid;
+            /* Wider columns for better leaderboard display */
+            grid-template-columns: 350px 1fr 350px;
+            gap: 50px;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        #game-center-cols {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+        }
+
+        #game-sidebar-right {
+            width: 350px;
+            position: sticky;
+            top: 10px;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+
+        /* Responsive: stack columns on portrait or very narrow screens */
+        @media (max-width: 1340px) and (orientation: portrait),
+        (max-width: 900px) {
+            #game-main-row {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #game-center-cols {
+                max-width: 95vw;
+            }
+
+            .game-spacer {
+                display: none;
+            }
+        }
+
+        /* ── Landscape Optimization (Tablet/Redmi Pad SE) ── */
+        @media (orientation: landscape) and (max-height: 900px) {
+            #game-main-row {
+                grid-template-columns: 300px 1fr 300px;
+                gap: 20px;
+            }
+
+            .game-spacer {
+                width: 300px !important;
+            }
+
+            #game-sidebar-right {
+                width: 300px !important;
+            }
+
+            .board-wrap {
+                max-width: 78vh;
+                /* Scale board to fit screen height */
+                margin: 0 auto;
+            }
+
+            #game {
+                padding: 15px 20px;
+                /* Tighter padding for horizontal screens */
+            }
+
+            #common-timer-box .ct-val {
+                font-size: 1.3rem;
+            }
+
+            .site-logo {
+                height: 24px;
+                width: auto;
+                margin-bottom: 10px;
+            }
+
+            #game-layout-wrapper {
+                gap: 10px;
+            }
+
+            .game-top-bar {
+                margin-bottom: 10px;
+            }
+        }
+
+        .game-lb-panel {
+            background: var(--panel-bg);
+            backdrop-filter: blur(14px);
+            border: var(--panel-border);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-lb-panel h3 {
+            font-size: 1.1rem;
+            font-family: 'Calibri', 'Outfit', sans-serif;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 15px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ── Played Status Card ── */
+        .played-status-card {
+            background: rgba(56, 189, 248, 0.05);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 20px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .played-status-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), transparent);
+            pointer-events: none;
+        }
+
+        .psc-icon {
+            font-size: 2.5rem;
+            filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.4));
+        }
+
+        .psc-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .psc-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .psc-value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .psc-res-win {
+            color: #22c55e;
+        }
+
+        .psc-res-draw {
+            color: #94a3b8;
+        }
+
+        .psc-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        @media (max-width: 1000px) {
+            #game-layout-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #game-sidebar-right {
+                width: 100%;
+                max-width: 600px;
+            }
+        }
+
+        /* ── Admin Login Link (Restored) ── */
         #admin-login-link {
             margin-top: 8px;
             background: rgba(255, 255, 255, .04) !important;
@@ -1257,6 +1520,40 @@
             border-color: rgba(239, 68, 68, .6) !important;
             color: #f87171 !important;
             transform: none !important;
+        }
+
+        /* ── Fullscreen Toggle ── */
+        #fullscreen-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10001;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 15px rgba(56, 189, 248, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #fullscreen-btn:hover {
+            transform: scale(1.1);
+            background: rgba(56, 189, 248, 0.15);
+            border-color: var(--accent);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.4);
+        }
+
+        #fullscreen-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
         }
 
         /* ── admin modal ── */
@@ -1282,86 +1579,98 @@
             border-radius: 20px;
             padding: 36px 40px 32px;
             width: 420px;
-            max-width: 94vw;
-            box-shadow: 0 0 60px rgba(239, 68, 68, .12), 0 20px 60px rgba(0, 0, 0, .6);
-            animation: popIn .4s cubic-bezier(.34, 1.56, .64, 1);
+            background: var(--panel);
+            backdrop-filter: blur(40px);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 32px;
+            padding: 40px;
+            width: min(520px, 94vw);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.7), 0 0 20px rgba(56, 189, 248, 0.1);
+            position: relative;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        #admin-overlay.show #admin-box {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         #admin-box h2 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 4px;
-            background: linear-gradient(135deg, #f87171, #fb923c);
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #fff, var(--accent));
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
         }
 
-        #admin-box p.admin-sub {
-            font-size: .8rem;
-            color: rgba(255, 255, 255, .4);
-            margin-bottom: 20px;
-        }
-
-        #admin-pw-wrap {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 10px;
+        .admin-sub {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
         }
 
         .admin-field {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
+            margin-bottom: 24px;
+            text-align: left;
         }
 
         .admin-label {
-            font-size: .75rem;
-            font-weight: 600;
-            color: rgba(255, 255, 255, .5);
+            display: block;
+            font-size: 0.82rem;
             text-transform: uppercase;
-            letter-spacing: .5px;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-weight: 600;
         }
 
         #admin-user,
         #admin-pw {
             width: 100%;
             box-sizing: border-box;
-            padding: 11px 14px;
-            border-radius: 10px;
-            border: 1.5px solid rgba(239, 68, 68, .3);
-            background: rgba(255, 255, 255, .06);
+            padding: 14px 18px;
+            border-radius: 12px;
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.04);
             color: #fff;
             font-family: inherit;
-            font-size: .95rem;
+            font-size: 1rem;
             outline: none;
-            transition: border-color .2s;
+            transition: all 0.3s;
         }
 
         #admin-user:focus,
         #admin-pw:focus {
-            border-color: rgba(239, 68, 68, .7);
+            border-color: var(--accent);
+            background: rgba(56, 189, 248, 0.05);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.1);
         }
 
         #admin-login-btn {
             width: 100%;
-            padding: 12px;
-            border-radius: 10px;
+            padding: 14px;
+            border-radius: 12px;
             border: none;
-            background: linear-gradient(135deg, #f87171, #fb923c);
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
             color: #fff;
             font-family: inherit;
             font-weight: 700;
             font-size: 1rem;
             cursor: pointer;
-            transition: transform .15s, box-shadow .15s;
-            box-shadow: 0 4px 16px rgba(239, 68, 68, .3);
+            transition: all 0.3s;
+            box-shadow: 0 8px 24px rgba(56, 189, 248, 0.25);
+            margin-top: 10px;
         }
 
         #admin-login-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(239, 68, 68, .45);
+            box-shadow: 0 12px 32px rgba(56, 189, 248, 0.4);
+            filter: brightness(1.1);
         }
 
         #admin-pw-err {
@@ -1373,52 +1682,78 @@
 
         #admin-controls {
             display: none;
+            animation: fadeIn 0.4s ease both;
         }
 
         #admin-controls.show {
             display: block;
         }
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .admin-section {
-            border-top: 1px solid rgba(255, 255, 255, .08);
-            padding-top: 18px;
-            margin-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 24px;
+            margin-top: 24px;
         }
 
         .admin-section h3 {
-            font-size: .85rem;
-            color: rgba(255, 255, 255, .5);
+            font-size: 0.9rem;
+            color: var(--accent);
             text-transform: uppercase;
-            letter-spacing: .6px;
-            margin-bottom: 12px;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+            font-weight: 700;
         }
 
-        .admin-btn-row {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
+        .admin-btn-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
         }
 
         .admin-action-btn {
-            flex: 1;
-            padding: 11px 16px;
-            border-radius: 11px;
-            border: none;
+            padding: 14px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
             font-family: inherit;
-            font-size: .9rem;
-            font-weight: 700;
+            font-size: 0.9rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: transform .15s, box-shadow .15s;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         .admin-action-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
         }
 
         .btn-danger {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: #fff;
-            box-shadow: 0 4px 16px rgba(239, 68, 68, .35);
+            background: rgba(239, 68, 68, 0.1) !important;
+            border-color: rgba(239, 68, 68, 0.2) !important;
+            color: #f87171 !important;
+        }
+
+        .btn-danger:hover {
+            background: rgba(239, 68, 68, 0.2) !important;
+            border-color: #ef4444 !important;
         }
 
         .btn-success {
@@ -1476,26 +1811,48 @@
             <!-- Left: login form -->
             <div id="login-col-left">
                 <div class="name-card">
-                    <svg class="site-logo" width="134" height="31" viewBox="0 0 134 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M75.5535 4.09668L68.2551 26.6027H61.4389L57.1304 12.9064L52.6292 26.6027H45.813L38.5146 4.09668H45.0733L49.6065 18.4687L54.3652 4.09668H60.2171L64.7502 18.5966L69.4761 4.09668H75.5526H75.5535Z" fill="#00BF53"/>
-                        <path d="M92.5282 19.4334H79.8602C80.3743 21.2014 81.8857 22.2306 84.1367 22.2306C85.8407 22.2306 86.9658 21.7484 88.1557 20.7192L91.3711 24.0634C89.6991 25.9282 87.2562 26.8925 83.944 26.8925C77.7388 26.8925 73.7197 23.0662 73.7197 17.8581C73.7197 12.6501 77.8027 8.8877 83.3011 8.8877C88.4452 8.8877 92.625 12.167 92.625 17.9221C92.625 18.3723 92.561 18.9513 92.5282 19.4334ZM79.7643 16.218H86.9019C86.5804 14.3852 85.2298 13.2282 83.3331 13.2282C81.4363 13.2282 80.1177 14.3852 79.7643 16.218Z" fill="#00BF53"/>
-                        <path d="M97.6724 4.09668H104.038V21.5545H114.777V26.6027H97.6724V4.09668Z" fill="#00BF53"/>
-                        <path d="M133.424 19.4334H120.756C121.27 21.2014 122.781 22.2306 125.032 22.2306C126.736 22.2306 127.861 21.7484 129.051 20.7192L132.267 24.0634C130.595 25.9282 128.152 26.8925 124.84 26.8925C118.634 26.8925 114.615 23.0662 114.615 17.8581C114.615 12.6501 118.698 8.8877 124.197 8.8877C129.341 8.8877 133.52 12.167 133.52 17.9221C133.52 18.3723 133.457 18.9513 133.424 19.4334ZM120.66 16.218H127.797C127.476 14.3852 126.125 13.2282 124.229 13.2282C122.332 13.2282 121.013 14.3852 120.66 16.218Z" fill="#00BF53"/>
-                        <path d="M15.4186 10.9343C15.4713 10.9204 15.5179 10.9403 15.5637 10.9628C15.8022 11.0812 16.446 12.9943 16.6957 13.4091C17.4095 14.5921 18.6668 14.5809 19.7253 15.1961C19.8939 15.2938 20.1367 15.3966 19.9664 15.6299C19.8429 15.7993 18.2719 16.354 17.9427 16.5148C16.2689 17.3339 16.5981 18.2897 15.8212 19.6394C15.6666 19.9082 15.4678 20.2115 15.2311 19.8321C14.7238 19.0207 14.6607 17.8438 13.9072 17.1024C13.152 16.3584 11.9526 16.2901 11.1541 15.7543C11.0504 15.6852 10.9485 15.6135 10.9174 15.483C10.9338 15.4044 10.9813 15.3395 11.047 15.2946C11.5326 14.968 12.5341 14.6932 13.1114 14.4028C13.7016 14.1064 13.9841 13.8429 14.3116 13.2657C14.5043 12.9261 15.2233 10.9835 15.4168 10.9343H15.4186Z" fill="#00BF53"/>
-                        <path d="M15.4712 6.21473C10.3677 6.21473 6.21558 10.3668 6.21558 15.4703C6.21558 17.1053 6.64159 18.6425 7.38905 19.9767C7.76495 19.2457 8.42513 18.6857 9.22358 18.4403C8.79325 17.5399 8.55216 16.5323 8.55216 15.4695C8.55216 11.6544 11.6561 8.55131 15.4703 8.55131C16.1469 8.55131 16.8019 8.64896 17.4206 8.83043C17.6194 7.99223 18.1612 7.28624 18.8888 6.86887C17.8302 6.44631 16.6766 6.21387 15.4703 6.21387L15.4712 6.21473ZM23.3252 10.5777C23.04 11.3804 22.4308 12.0303 21.6557 12.369C22.1258 13.3023 22.3902 14.3556 22.3902 15.4703C22.3902 19.2854 19.2863 22.3885 15.472 22.3885C14.6598 22.3885 13.8786 22.2476 13.1536 21.9893C12.9894 22.8171 12.4943 23.5257 11.8116 23.9707C12.935 24.4563 14.1724 24.7259 15.472 24.7259C20.5755 24.7259 24.7276 20.5738 24.7276 15.4703C24.7276 13.6756 24.2144 11.9983 23.3252 10.5768V10.5777Z" fill="#00BF53"/>
-                        <path d="M12.0372 21.3639C12.0372 21.4002 12.0363 21.4365 12.0338 21.4728C11.9819 22.3723 11.2958 23.1008 10.4153 23.2191C10.3332 23.2304 10.2493 23.2356 10.1647 23.2356C9.1303 23.2356 8.29297 22.3974 8.29297 21.3639C8.29297 21.3449 8.29297 21.3259 8.29383 21.3068C8.32062 20.4012 8.99032 19.6581 9.86221 19.5164C9.96072 19.5 10.0618 19.4922 10.1647 19.4922C11.1981 19.4922 12.0363 20.3304 12.0363 21.3639H12.0372Z" fill="#00BF53"/>
-                        <path d="M22.2926 9.54465C22.2926 10.3742 21.7534 11.0776 21.0068 11.323C20.8227 11.3835 20.6257 11.4163 20.4209 11.4163C19.3865 11.4163 18.5492 10.5781 18.5492 9.54465C18.5492 9.45565 18.5552 9.36837 18.5673 9.28369C18.6944 8.37377 19.4755 7.67383 20.4209 7.67383C20.4321 7.67383 20.4433 7.67383 20.4546 7.67383C21.3498 7.68938 22.0921 8.33315 22.258 9.18345C22.2805 9.30097 22.2926 9.42108 22.2926 9.54465Z" fill="#00BF53"/>
-                        <path d="M27.6847 5.96935C27.4082 6.75138 26.8241 7.38737 26.0792 7.73475C27.6666 9.90629 28.605 12.5807 28.605 15.4704C28.605 22.7126 22.7134 28.6041 15.4712 28.6041C13.0439 28.6041 10.7687 27.9422 8.81576 26.7895C8.59455 27.5862 8.06312 28.2525 7.35799 28.6499C9.77235 30.1423 12.56 30.9407 15.4704 30.9407C19.6026 30.9407 23.4877 29.3317 26.4101 26.4093C29.3317 23.4877 30.9416 19.6026 30.9416 15.4695C30.9416 11.9836 29.7966 8.67318 27.6839 5.96848L27.6847 5.96935ZM15.4712 2.33658C17.7828 2.33658 19.9569 2.93715 21.8459 3.99051C22.1016 3.19898 22.6694 2.54743 23.4039 2.18104C21.031 0.759562 18.3099 0,15.4712 0C11.339 0 7.45391 1.60899 4.53145 4.53145C1.60986 7.45305 0 11.3381 0 15.4712C0 18.8361 1.06719 22.036 3.03998 24.6862C3.37785 23.9448 4.00088 23.3615 4.76909 23.0764C3.23786 20.929 2.33658 18.303 2.33658 15.4712C2.33658 8.22903 8.22816 2.33745 15.4704 2.33745L15.4712 2.33658Z" fill="#00BF53"/>
-                        <path d="M7.81337 25.9882C7.81337 26.0357 7.81164 26.0832 7.80818 26.1299C7.74683 27.0044 7.12553 27.7242 6.29943 27.9324C6.14216 27.9722 5.97711 27.9929 5.80774 27.9929C4.69994 27.9929 3.80298 27.0951 3.80298 25.9882C3.80298 25.8767 3.81162 25.7669 3.82977 25.6598C3.96976 24.8086 4.6455 24.1389 5.49839 24.0067C5.59862 23.9912 5.70232 23.9834 5.80774 23.9834C6.91554 23.9834 7.8125 24.8812 7.8125 25.9882H7.81337Z" fill="#00BF53"/>
-                        <path d="M26.7843 4.91687V4.93933C26.7843 5.83888 26.1924 6.60017 25.3758 6.85422C25.1874 6.91298 24.9869 6.94409 24.7795 6.94409C23.6717 6.94409 22.7748 6.04627 22.7748 4.93933C22.7748 4.81663 22.786 4.69738 22.8076 4.58072C22.9632 3.71487 23.6752 3.04258 24.5609 2.94667C24.6326 2.93889 24.7061 2.93457 24.7795 2.93457C25.8796 2.93457 26.7722 3.81943 26.7843 4.91687Z" fill="#00BF53"/>
+                    <svg class="site-logo" width="134" height="31" viewBox="0 0 134 31" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M75.5535 4.09668L68.2551 26.6027H61.4389L57.1304 12.9064L52.6292 26.6027H45.813L38.5146 4.09668H45.0733L49.6065 18.4687L54.3652 4.09668H60.2171L64.7502 18.5966L69.4761 4.09668H75.5526H75.5535Z"
+                            fill="#00BF53" />
+                        <path
+                            d="M92.5282 19.4334H79.8602C80.3743 21.2014 81.8857 22.2306 84.1367 22.2306C85.8407 22.2306 86.9658 21.7484 88.1557 20.7192L91.3711 24.0634C89.6991 25.9282 87.2562 26.8925 83.944 26.8925C77.7388 26.8925 73.7197 23.0662 73.7197 17.8581C73.7197 12.6501 77.8027 8.8877 83.3011 8.8877C88.4452 8.8877 92.625 12.167 92.625 17.9221C92.625 18.3723 92.561 18.9513 92.5282 19.4334ZM79.7643 16.218H86.9019C86.5804 14.3852 85.2298 13.2282 83.3331 13.2282C81.4363 13.2282 80.1177 14.3852 79.7643 16.218Z"
+                            fill="#00BF53" />
+                        <path d="M97.6724 4.09668H104.038V21.5545H114.777V26.6027H97.6724V4.09668Z" fill="#00BF53" />
+                        <path
+                            d="M133.424 19.4334H120.756C121.27 21.2014 122.781 22.2306 125.032 22.2306C126.736 22.2306 127.861 21.7484 129.051 20.7192L132.267 24.0634C130.595 25.9282 128.152 26.8925 124.84 26.8925C118.634 26.8925 114.615 23.0662 114.615 17.8581C114.615 12.6501 118.698 8.8877 124.197 8.8877C129.341 8.8877 133.52 12.167 133.52 17.9221C133.52 18.3723 133.457 18.9513 133.424 19.4334ZM120.66 16.218H127.797C127.476 14.3852 126.125 13.2282 124.229 13.2282C122.332 13.2282 121.013 14.3852 120.66 16.218Z"
+                            fill="#00BF53" />
+                        <path
+                            d="M15.4186 10.9343C15.4713 10.9204 15.5179 10.9403 15.5637 10.9628C15.8022 11.0812 16.446 12.9943 16.6957 13.4091C17.4095 14.5921 18.6668 14.5809 19.7253 15.1961C19.8939 15.2938 20.1367 15.3966 19.9664 15.6299C19.8429 15.7993 18.2719 16.354 17.9427 16.5148C16.2689 17.3339 16.5981 18.2897 15.8212 19.6394C15.6666 19.9082 15.4678 20.2115 15.2311 19.8321C14.7238 19.0207 14.6607 17.8438 13.9072 17.1024C13.152 16.3584 11.9526 16.2901 11.1541 15.7543C11.0504 15.6852 10.9485 15.6135 10.9174 15.483C10.9338 15.4044 10.9813 15.3395 11.047 15.2946C11.5326 14.968 12.5341 14.6932 13.1114 14.4028C13.7016 14.1064 13.9841 13.8429 14.3116 13.2657C14.5043 12.9261 15.2233 10.9835 15.4168 10.9343H15.4186Z"
+                            fill="#00BF53" />
+                        <path
+                            d="M15.4712 6.21473C10.3677 6.21473 6.21558 10.3668 6.21558 15.4703C6.21558 17.1053 6.64159 18.6425 7.38905 19.9767C7.76495 19.2457 8.42513 18.6857 9.22358 18.4403C8.79325 17.5399 8.55216 16.5323 8.55216 15.4695C8.55216 11.6544 11.6561 8.55131 15.4703 8.55131C16.1469 8.55131 16.8019 8.64896 17.4206 8.83043C17.6194 7.99223 18.1612 7.28624 18.8888 6.86887C17.8302 6.44631 16.6766 6.21387 15.4703 6.21387L15.4712 6.21473ZM23.3252 10.5777C23.04 11.3804 22.4308 12.0303 21.6557 12.369C22.1258 13.3023 22.3902 14.3556 22.3902 15.4703C22.3902 19.2854 19.2863 22.3885 15.472 22.3885C14.6598 22.3885 13.8786 22.2476 13.1536 21.9893C12.9894 22.8171 12.4943 23.5257 11.8116 23.9707C12.935 24.4563 14.1724 24.7259 15.472 24.7259C20.5755 24.7259 24.7276 20.5738 24.7276 15.4703C24.7276 13.6756 24.2144 11.9983 23.3252 10.5768V10.5777Z"
+                            fill="#00BF53" />
+                        <path
+                            d="M12.0372 21.3639C12.0372 21.4002 12.0363 21.4365 12.0338 21.4728C11.9819 22.3723 11.2958 23.1008 10.4153 23.2191C10.3332 23.2304 10.2493 23.2356 10.1647 23.2356C9.1303 23.2356 8.29297 22.3974 8.29297 21.3639C8.29297 21.3449 8.29297 21.3259 8.29383 21.3068C8.32062 20.4012 8.99032 19.6581 9.86221 19.5164C9.96072 19.5 10.0618 19.4922 10.1647 19.4922C11.1981 19.4922 12.0363 20.3304 12.0363 21.3639H12.0372Z"
+                            fill="#00BF53" />
+                        <path
+                            d="M22.2926 9.54465C22.2926 10.3742 21.7534 11.0776 21.0068 11.323C20.8227 11.3835 20.6257 11.4163 20.4209 11.4163C19.3865 11.4163 18.5492 10.5781 18.5492 9.54465C18.5492 9.45565 18.5552 9.36837 18.5673 9.28369C18.6944 8.37377 19.4755 7.67383 20.4209 7.67383C20.4321 7.67383 20.4433 7.67383 20.4546 7.67383C21.3498 7.68938 22.0921 8.33315 22.258 9.18345C22.2805 9.30097 22.2926 9.42108 22.2926 9.54465Z"
+                            fill="#00BF53" />
+                        <path
+                            d="M27.6847 5.96935C27.4082 6.75138 26.8241 7.38737 26.0792 7.73475C27.6666 9.90629 28.605 12.5807 28.605 15.4704C28.605 22.7126 22.7134 28.6041 15.4712 28.6041C13.0439 28.6041 10.7687 27.9422 8.81576 26.7895C8.59455 27.5862 8.06312 28.2525 7.35799 28.6499C9.77235 30.1423 12.56 30.9407 15.4704 30.9407C19.6026 30.9407 23.4877 29.3317 26.4101 26.4093C29.3317 23.4877 30.9416 19.6026 30.9416 15.4695C30.9416 11.9836 29.7966 8.67318 27.6839 5.96848L27.6847 5.96935ZM15.4712 2.33658C17.7828 2.33658 19.9569 2.93715 21.8459 3.99051C22.1016 3.19898 22.6694 2.54743 23.4039 2.18104C21.031 0.759562 18.3099 0,15.4712 0C11.339 0 7.45391 1.60899 4.53145 4.53145C1.60986 7.45305 0 11.3381 0 15.4712C0 18.8361 1.06719 22.036 3.03998 24.6862C3.37785 23.9448 4.00088 23.3615 4.76909 23.0764C3.23786 20.929 2.33658 18.303 2.33658 15.4712C2.33658 8.22903 8.22816 2.33745 15.4704 2.33745L15.4712 2.33658Z"
+                            fill="#00BF53" />
+                        <path
+                            d="M7.81337 25.9882C7.81337 26.0357 7.81164 26.0832 7.80818 26.1299C7.74683 27.0044 7.12553 27.7242 6.29943 27.9324C6.14216 27.9722 5.97711 27.9929 5.80774 27.9929C4.69994 27.9929 3.80298 27.0951 3.80298 25.9882C3.80298 25.8767 3.81162 25.7669 3.82977 25.6598C3.96976 24.8086 4.6455 24.1389 5.49839 24.0067C5.59862 23.9912 5.70232 23.9834 5.80774 23.9834C6.91554 23.9834 7.8125 24.8812 7.8125 25.9882H7.81337Z"
+                            fill="#00BF53" />
+                        <path
+                            d="M26.7843 4.91687V4.93933C26.7843 5.83888 26.1924 6.60017 25.3758 6.85422C25.1874 6.91298 24.9869 6.94409 24.7795 6.94409C23.6717 6.94409 22.7748 6.04627 22.7748 4.93933C22.7748 4.81663 22.786 4.69738 22.8076 4.58072C22.9632 3.71487 23.6752 3.04258 24.5609 2.94667C24.6326 2.93889 24.7061 2.93457 24.7795 2.93457C25.8796 2.93457 26.7722 3.81943 26.7843 4.91687Z"
+                            fill="#00BF53" />
                     </svg>
                     <h2>Player Login</h2>
                     <p>Enter your details to join the game</p>
 
                     <div class="login-field">
                         <label class="login-label" for="player-name-input">&#128100; Full Name</label>
-                        <input id="player-name-input" class="login-input" type="text" maxlength="30"
+                        <input id="player-name-input" class="login-input" type="text" maxlength="25"
                             placeholder="Your real name…" autocomplete="name"
+                            oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')"
                             onkeydown="if(event.key==='Enter') document.getElementById('phone-number-input').focus()" />
                     </div>
 
@@ -1503,9 +1860,10 @@
                         <label class="login-label" for="phone-number-input">💬 WhatsApp Number</label>
                         <div class="phone-row">
                             <input id="phone-prefix" class="login-input" type="text" maxlength="5" placeholder="+91"
-                                value="+91" autocomplete="off" />
-                            <input id="phone-number-input" class="login-input" type="tel" maxlength="15"
+                                value="+91" autocomplete="off" readonly />
+                            <input id="phone-number-input" class="login-input" type="tel" maxlength="10"
                                 placeholder="9876543210" autocomplete="tel"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                                 onkeydown="if(event.key==='Enter') confirmName()" />
                         </div>
                     </div>
@@ -1519,7 +1877,8 @@
             <div id="login-col-right">
                 <div class="login-lb-card">
                     <h3>&#127942; Live Leaderboard</h3>
-                    <h1 style="color: green; font-family: 'Times New Roman', Times, serif; font-size: 24px;">Leaderboard</h1>
+                    <h1 style="color: green; font-family: 'Times New Roman', Times, serif; font-size: 24px;">Leaderboard
+                    </h1>
                     <div id="login-lb-body"></div>
                 </div>
             </div>
@@ -1527,33 +1886,69 @@
     </div>
 
     <!-- Hidden name-screen stub (JS compatibility) -->
-    <div id="name-screen" class="hidden"></div>
+    <div id="name-screen" class="hidden"> </div>
+
+    <!-- Fullscreen Toggle Button -->
+    <div id="fullscreen-btn" onclick="toggleFullscreen()" title="Toggle Fullscreen">
+        <svg viewBox="0 0 24 24">
+            <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />
+        </svg>
+    </div>
 
     <!-- .container: wraps menu + game views -->
     <div class="container">
-        
-        
+
+
         <!-- Game menu (hidden until login) -->
         <div id="menu" class="hidden">
             <!-- Site logo on top of menu -->
-            <svg class="site-logo" width="134" height="31" viewBox="0 0 134 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M75.5535 4.09668L68.2551 26.6027H61.4389L57.1304 12.9064L52.6292 26.6027H45.813L38.5146 4.09668H45.0733L49.6065 18.4687L54.3652 4.09668H60.2171L64.7502 18.5966L69.4761 4.09668H75.5526H75.5535Z" fill="#00BF53"/>
-                <path d="M92.5282 19.4334H79.8602C80.3743 21.2014 81.8857 22.2306 84.1367 22.2306C85.8407 22.2306 86.9658 21.7484 88.1557 20.7192L91.3711 24.0634C89.6991 25.9282 87.2562 26.8925 83.944 26.8925C77.7388 26.8925 73.7197 23.0662 73.7197 17.8581C73.7197 12.6501 77.8027 8.8877 83.3011 8.8877C88.4452 8.8877 92.625 12.167 92.625 17.9221C92.625 18.3723 92.561 18.9513 92.5282 19.4334ZM79.7643 16.218H86.9019C86.5804 14.3852 85.2298 13.2282 83.3331 13.2282C81.4363 13.2282 80.1177 14.3852 79.7643 16.218Z" fill="#00BF53"/>
-                <path d="M97.6724 4.09668H104.038V21.5545H114.777V26.6027H97.6724V4.09668Z" fill="#00BF53"/>
-                <path d="M133.424 19.4334H120.756C121.27 21.2014 122.781 22.2306 125.032 22.2306C126.736 22.2306 127.861 21.7484 129.051 20.7192L132.267 24.0634C130.595 25.9282 128.152 26.8925 124.84 26.8925C118.634 26.8925 114.615 23.0662 114.615 17.8581C114.615 12.6501 118.698 8.8877 124.197 8.8877C129.341 8.8877 133.52 12.167 133.52 17.9221C133.52 18.3723 133.457 18.9513 133.424 19.4334ZM120.66 16.218H127.797C127.476 14.3852 126.125 13.2282 124.229 13.2282C122.332 13.2282 121.013 14.3852 120.66 16.218Z" fill="#00BF53"/>
-                <path d="M15.4186 10.9343C15.4713 10.9204 15.5179 10.9403 15.5637 10.9628C15.8022 11.0812 16.446 12.9943 16.6957 13.4091C17.4095 14.5921 18.6668 14.5809 19.7253 15.1961C19.8939 15.2938 20.1367 15.3966 19.9664 15.6299C19.8429 15.7993 18.2719 16.354 17.9427 16.5148C16.2689 17.3339 16.5981 18.2897 15.8212 19.6394C15.6666 19.9082 15.4678 20.2115 15.2311 19.8321C14.7238 19.0207 14.6607 17.8438 13.9072 17.1024C13.152 16.3584 11.9526 16.2901 11.1541 15.7543C11.0504 15.6852 10.9485 15.6135 10.9174 15.483C10.9338 15.4044 10.9813 15.3395 11.047 15.2946C11.5326 14.968 12.5341 14.6932 13.1114 14.4028C13.7016 14.1064 13.9841 13.8429 14.3116 13.2657C14.5043 12.9261 15.2233 10.9835 15.4168 10.9343H15.4186Z" fill="#00BF53"/>
-                <path d="M15.4712 6.21473C10.3677 6.21473 6.21558 10.3668 6.21558 15.4703C6.21558 17.1053 6.64159 18.6425 7.38905 19.9767C7.76495 19.2457 8.42513 18.6857 9.22358 18.4403C8.79325 17.5399 8.55216 16.5323 8.55216 15.4695C8.55216 11.6544 11.6561 8.55131 15.4703 8.55131C16.1469 8.55131 16.8019 8.64896 17.4206 8.83043C17.6194 7.99223 18.1612 7.28624 18.8888 6.86887C17.8302 6.44631 16.6766 6.21387 15.4703 6.21387L15.4712 6.21473ZM23.3252 10.5777C23.04 11.3804 22.4308 12.0303 21.6557 12.369C22.1258 13.3023 22.3902 14.3556 22.3902 15.4703C22.3902 19.2854 19.2863 22.3885 15.472 22.3885C14.6598 22.3885 13.8786 22.2476 13.1536 21.9893C12.9894 22.8171 12.4943 23.5257 11.8116 23.9707C12.935 24.4563 14.1724 24.7259 15.472 24.7259C20.5755 24.7259 24.7276 20.5738 24.7276 15.4703C24.7276 13.6756 24.2144 11.9983 23.3252 10.5768V10.5777Z" fill="#00BF53"/>
-                <path d="M12.0372 21.3639C12.0372 21.4002 12.0363 21.4365 12.0338 21.4728C11.9819 22.3723 11.2958 23.1008 10.4153 23.2191C10.3332 23.2304 10.2493 23.2356 10.1647 23.2356C9.1303 23.2356 8.29297 22.3974 8.29297 21.3639C8.29297 21.3449 8.29297 21.3259 8.29383 21.3068C8.32062 20.4012 8.99032 19.6581 9.86221 19.5164C9.96072 19.5 10.0618 19.4922 10.1647 19.4922C11.1981 19.4922 12.0363 20.3304 12.0363 21.3639H12.0372Z" fill="#00BF53"/>
-                <path d="M22.2926 9.54465C22.2926 10.3742 21.7534 11.0776 21.0068 11.323C20.8227 11.3835 20.6257 11.4163 20.4209 11.4163C19.3865 11.4163 18.5492 10.5781 18.5492 9.54465C18.5492 9.45565 18.5552 9.36837 18.5673 9.28369C18.6944 8.37377 19.4755 7.67383 20.4209 7.67383C20.4321 7.67383 20.4433 7.67383 20.4546 7.67383C21.3498 7.68938 22.0921 8.33315 22.258 9.18345C22.2805 9.30097 22.2926 9.42108 22.2926 9.54465Z" fill="#00BF53"/>
-                <path d="M27.6847 5.96935C27.4082 6.75138 26.8241 7.38737 26.0792 7.73475C27.6666 9.90629 28.605 12.5807 28.605 15.4704C28.605 22.7126 22.7134 28.6041 15.4712 28.6041C13.0439 28.6041 10.7687 27.9422 8.81576 26.7895C8.59455 27.5862 8.06312 28.2525 7.35799 28.6499C9.77235 30.1423 12.56 30.9407 15.4704 30.9407C19.6026 30.9407 23.4877 29.3317 26.4101 26.4093C29.3317 23.4877 30.9416 19.6026 30.9416 15.4695C30.9416 11.9836 29.7966 8.67318 27.6839 5.96848L27.6847 5.96935ZM15.4712 2.33658C17.7828 2.33658 19.9569 2.93715 21.8459 3.99051C22.1016 3.19898 22.6694 2.54743 23.4039 2.18104C21.031 0.759562 18.3099 0,15.4712 0C11.339 0 7.45391 1.60899 4.53145 4.53145C1.60986 7.45305 0 11.3381 0 15.4712C0 18.8361 1.06719 22.036 3.03998 24.6862C3.37785 23.9448 4.00088 23.3615 4.76909 23.0764C3.23786 20.929 2.33658 18.303 2.33658 15.4712C2.33658 8.22903 8.22816 2.33745 15.4704 2.33745L15.4712 2.33658Z" fill="#00BF53"/>
+            <svg class="site-logo" width="134" height="31" viewBox="0 0 134 31" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M75.5535 4.09668L68.2551 26.6027H61.4389L57.1304 12.9064L52.6292 26.6027H45.813L38.5146 4.09668H45.0733L49.6065 18.4687L54.3652 4.09668H60.2171L64.7502 18.5966L69.4761 4.09668H75.5526H75.5535Z"
+                    fill="#00BF53" />
+                <path
+                    d="M92.5282 19.4334H79.8602C80.3743 21.2014 81.8857 22.2306 84.1367 22.2306C85.8407 22.2306 86.9658 21.7484 88.1557 20.7192L91.3711 24.0634C89.6991 25.9282 87.2562 26.8925 83.944 26.8925C77.7388 26.8925 73.7197 23.0662 73.7197 17.8581C73.7197 12.6501 77.8027 8.8877 83.3011 8.8877C88.4452 8.8877 92.625 12.167 92.625 17.9221C92.625 18.3723 92.561 18.9513 92.5282 19.4334ZM79.7643 16.218H86.9019C86.5804 14.3852 85.2298 13.2282 83.3331 13.2282C81.4363 13.2282 80.1177 14.3852 79.7643 16.218Z"
+                    fill="#00BF53" />
+                <path d="M97.6724 4.09668H104.038V21.5545H114.777V26.6027H97.6724V4.09668Z" fill="#00BF53" />
+                <path
+                    d="M133.424 19.4334H120.756C121.27 21.2014 122.781 22.2306 125.032 22.2306C126.736 22.2306 127.861 21.7484 129.051 20.7192L132.267 24.0634C130.595 25.9282 128.152 26.8925 124.84 26.8925C118.634 26.8925 114.615 23.0662 114.615 17.8581C114.615 12.6501 118.698 8.8877 124.197 8.8877C129.341 8.8877 133.52 12.167 133.52 17.9221C133.52 18.3723 133.457 18.9513 133.424 19.4334ZM120.66 16.218H127.797C127.476 14.3852 126.125 13.2282 124.229 13.2282C122.332 13.2282 121.013 14.3852 120.66 16.218Z"
+                    fill="#00BF53" />
+                <path
+                    d="M15.4186 10.9343C15.4713 10.9204 15.5179 10.9403 15.5637 10.9628C15.8022 11.0812 16.446 12.9943 16.6957 13.4091C17.4095 14.5921 18.6668 14.5809 19.7253 15.1961C19.8939 15.2938 20.1367 15.3966 19.9664 15.6299C19.8429 15.7993 18.2719 16.354 17.9427 16.5148C16.2689 17.3339 16.5981 18.2897 15.8212 19.6394C15.6666 19.9082 15.4678 20.2115 15.2311 19.8321C14.7238 19.0207 14.6607 17.8438 13.9072 17.1024C13.152 16.3584 11.9526 16.2901 11.1541 15.7543C11.0504 15.6852 10.9485 15.6135 10.9174 15.483C10.9338 15.4044 10.9813 15.3395 11.047 15.2946C11.5326 14.968 12.5341 14.6932 13.1114 14.4028C13.7016 14.1064 13.9841 13.8429 14.3116 13.2657C14.5043 12.9261 15.2233 10.9835 15.4168 10.9343H15.4186Z"
+                    fill="#00BF53" />
+                <path
+                    d="M15.4712 6.21473C10.3677 6.21473 6.21558 10.3668 6.21558 15.4703C6.21558 17.1053 6.64159 18.6425 7.38905 19.9767C7.76495 19.2457 8.42513 18.6857 9.22358 18.4403C8.79325 17.5399 8.55216 16.5323 8.55216 15.4695C8.55216 11.6544 11.6561 8.55131 15.4703 8.55131C16.1469 8.55131 16.8019 8.64896 17.4206 8.83043C17.6194 7.99223 18.1612 7.28624 18.8888 6.86887C17.8302 6.44631 16.6766 6.21387 15.4703 6.21387L15.4712 6.21473ZM23.3252 10.5777C23.04 11.3804 22.4308 12.0303 21.6557 12.369C22.1258 13.3023 22.3902 14.3556 22.3902 15.4703C22.3902 19.2854 19.2863 22.3885 15.472 22.3885C14.6598 22.3885 13.8786 22.2476 13.1536 21.9893C12.9894 22.8171 12.4943 23.5257 11.8116 23.9707C12.935 24.4563 14.1724 24.7259 15.472 24.7259C20.5755 24.7259 24.7276 20.5738 24.7276 15.4703C24.7276 13.6756 24.2144 11.9983 23.3252 10.5768V10.5777Z"
+                    fill="#00BF53" />
+                <path
+                    d="M12.0372 21.3639C12.0372 21.4002 12.0363 21.4365 12.0338 21.4728C11.9819 22.3723 11.2958 23.1008 10.4153 23.2191C10.3332 23.2304 10.2493 23.2356 10.1647 23.2356C9.1303 23.2356 8.29297 22.3974 8.29297 21.3639C8.29297 21.3449 8.29297 21.3259 8.29383 21.3068C8.32062 20.4012 8.99032 19.6581 9.86221 19.5164C9.96072 19.5 10.0618 19.4922 10.1647 19.4922C11.1981 19.4922 12.0363 20.3304 12.0363 21.3639H12.0372Z"
+                    fill="#00BF53" />
+                <path
+                    d="M22.2926 9.54465C22.2926 10.3742 21.7534 11.0776 21.0068 11.323C20.8227 11.3835 20.6257 11.4163 20.4209 11.4163C19.3865 11.4163 18.5492 10.5781 18.5492 9.54465C18.5492 9.45565 18.5552 9.36837 18.5673 9.28369C18.6944 8.37377 19.4755 7.67383 20.4209 7.67383C20.4321 7.67383 20.4433 7.67383 20.4546 7.67383C21.3498 7.68938 22.0921 8.33315 22.258 9.18345C22.2805 9.30097 22.2926 9.42108 22.2926 9.54465Z"
+                    fill="#00BF53" />
+                <path
+                    d="M27.6847 5.96935C27.4082 6.75138 26.8241 7.38737 26.0792 7.73475C27.6666 9.90629 28.605 12.5807 28.605 15.4704C28.605 22.7126 22.7134 28.6041 15.4712 28.6041C13.0439 28.6041 10.7687 27.9422 8.81576 26.7895C8.59455 27.5862 8.06312 28.2525 7.35799 28.6499C9.77235 30.1423 12.56 30.9407 15.4704 30.9407C19.6026 30.9407 23.4877 29.3317 26.4101 26.4093C29.3317 23.4877 30.9416 19.6026 30.9416 15.4695C30.9416 11.9836 29.7966 8.67318 27.6839 5.96848L27.6847 5.96935ZM15.4712 2.33658C17.7828 2.33658 19.9569 2.93715 21.8459 3.99051C22.1016 3.19898 22.6694 2.54743 23.4039 2.18104C21.031 0.759562 18.3099 0,15.4712 0C11.339 0 7.45391 1.60899 4.53145 4.53145C1.60986 7.45305 0 11.3381 0 15.4712C0 18.8361 1.06719 22.036 3.03998 24.6862C3.37785 23.9448 4.00088 23.3615 4.76909 23.0764C3.23786 20.929 2.33658 18.303 2.33658 15.4712C2.33658 8.22903 8.22816 2.33745 15.4704 2.33745L15.4712 2.33658Z"
+                    fill="#00BF53" />
             </svg>
             <div id="menu-cols">
-                <!-- Left: game controls -->
+                <!-- Left: game controls & rules -->
                 <div id="menu-col-left">
                     <div class="menu-panel">
                         <div id="player-greeting" style="margin-bottom:18px"></div>
-                        <button onclick="startGame(120)">⚡ Blitz • 2 Minutes</button>
-                        <button onclick="startGame(240)">🕐 Blitz • 4 Minutes</button>
+                        <div id="status-container"></div>
+
+                        <div id="rules-card-wrap" class="rules-card">
+                            <h3>📜 Game Rules</h3>
+                            <ul>
+                                <li>You have<strong>3 minutes</strong>to play.</li>
+                                <li>You must<strong>Checkmate</strong>the AI to win.</li>
+                                <li>If time runs out or no checkmate occurs, it's a<strong>Draw.</strong></li>
+                                <li>Compete against our<strong>WeLe AI</strong>to prove your skills!</li>
+                            </ul>
+                        </div>
+
+                        <button class="start-game-btn" onclick="startGame(180)"
+                            style="background: linear-gradient(135deg, #22c55e, #16a34a);">🎮 Start Game</button>
                         <button id="logout-btn" onclick="logout()">🚪 Logout</button>
                     </div>
                 </div>
@@ -1561,7 +1956,6 @@
                 <div id="menu-col-right">
                     <div class="menu-lb-panel">
                         <h3>🏆 Leaderboard</h3>
-                        <h1 style="color: green; font-family: 'Times New Roman', Times, serif;">Leaderboard</h1>
                         <div id="menu-lb-body"></div>
                     </div>
                 </div>
@@ -1569,47 +1963,83 @@
         </div>
 
         <div id="game" class="hidden">
-
-            <svg class="site-logo game-logo" width="134" height="31" viewBox="0 0 134 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M75.5535 4.09668L68.2551 26.6027H61.4389L57.1304 12.9064L52.6292 26.6027H45.813L38.5146 4.09668H45.0733L49.6065 18.4687L54.3652 4.09668H60.2171L64.7502 18.5966L69.4761 4.09668H75.5526H75.5535Z" fill="#00BF53"/>
-                <path d="M92.5282 19.4334H79.8602C80.3743 21.2014 81.8857 22.2306 84.1367 22.2306C85.8407 22.2306 86.9658 21.7484 88.1557 20.7192L91.3711 24.0634C89.6991 25.9282 87.2562 26.8925 83.944 26.8925C77.7388 26.8925 73.7197 23.0662 73.7197 17.8581C73.7197 12.6501 77.8027 8.8877 83.3011 8.8877C88.4452 8.8877 92.625 12.167 92.625 17.9221C92.625 18.3723 92.561 18.9513 92.5282 19.4334ZM79.7643 16.218H86.9019C86.5804 14.3852 85.2298 13.2282 83.3331 13.2282C81.4363 13.2282 80.1177 14.3852 79.7643 16.218Z" fill="#00BF53"/>
-                <path d="M97.6724 4.09668H104.038V21.5545H114.777V26.6027H97.6724V4.09668Z" fill="#00BF53"/>
-                <path d="M133.424 19.4334H120.756C121.27 21.2014 122.781 22.2306 125.032 22.2306C126.736 22.2306 127.861 21.7484 129.051 20.7192L132.267 24.0634C130.595 25.9282 128.152 26.8925 124.84 26.8925C118.634 26.8925 114.615 23.0662 114.615 17.8581C114.615 12.6501 118.698 8.8877 124.197 8.8877C129.341 8.8877 133.52 12.167 133.52 17.9221C133.52 18.3723 133.457 18.9513 133.424 19.4334ZM120.66 16.218H127.797C127.476 14.3852 126.125 13.2282 124.229 13.2282C122.332 13.2282 121.013 14.3852 120.66 16.218Z" fill="#00BF53"/>
-                <path d="M15.4186 10.9343C15.4713 10.9204 15.5179 10.9403 15.5637 10.9628C15.8022 11.0812 16.446 12.9943 16.6957 13.4091C17.4095 14.5921 18.6668 14.5809 19.7253 15.1961C19.8939 15.2938 20.1367 15.3966 19.9664 15.6299C19.8429 15.7993 18.2719 16.354 17.9427 16.5148C16.2689 17.3339 16.5981 18.2897 15.8212 19.6394C15.6666 19.9082 15.4678 20.2115 15.2311 19.8321C14.7238 19.0207 14.6607 17.8438 13.9072 17.1024C13.152 16.3584 11.9526 16.2901 11.1541 15.7543C11.0504 15.6852 10.9485 15.6135 10.9174 15.483C10.9338 15.4044 10.9813 15.3395 11.047 15.2946C11.5326 14.968 12.5341 14.6932 13.1114 14.4028C13.7016 14.1064 13.9841 13.8429 14.3116 13.2657C14.5043 12.9261 15.2233 10.9835 15.4168 10.9343H15.4186Z" fill="#00BF53"/>
-                <path d="M15.4712 6.21473C10.3677 6.21473 6.21558 10.3668 6.21558 15.4703C6.21558 17.1053 6.64159 18.6425 7.38905 19.9767C7.76495 19.2457 8.42513 18.6857 9.22358 18.4403C8.79325 17.5399 8.55216 16.5323 8.55216 15.4695C8.55216 11.6544 11.6561 8.55131 15.4703 8.55131C16.1469 8.55131 16.8019 8.64896 17.4206 8.83043C17.6194 7.99223 18.1612 7.28624 18.8888 6.86887C17.8302 6.44631 16.6766 6.21387 15.4703 6.21387L15.4712 6.21473ZM23.3252 10.5777C23.04 11.3804 22.4308 12.0303 21.6557 12.369C22.1258 13.3023 22.3902 14.3556 22.3902 15.4703C22.3902 19.2854 19.2863 22.3885 15.472 22.3885C14.6598 22.3885 13.8786 22.2476 13.1536 21.9893C12.9894 22.8171 12.4943 23.5257 11.8116 23.9707C12.935 24.4563 14.1724 24.7259 15.472 24.7259C20.5755 24.7259 24.7276 20.5738 24.7276 15.4703C24.7276 13.6756 24.2144 11.9983 23.3252 10.5768V10.5777Z" fill="#00BF53"/>
-                <path d="M12.0372 21.3639C12.0372 21.4002 12.0363 21.4365 12.0338 21.4728C11.9819 22.3723 11.2958 23.1008 10.4153 23.2191C10.3332 23.2304 10.2493 23.2356 10.1647 23.2356C9.1303 23.2356 8.29297 22.3974 8.29297 21.3639C8.29297 21.3449 8.29297 21.3259 8.29383 21.3068C8.32062 20.4012 8.99032 19.6581 9.86221 19.5164C9.96072 19.5 10.0618 19.4922 10.1647 19.4922C11.1981 19.4922 12.0363 20.3304 12.0363 21.3639H12.0372Z" fill="#00BF53"/>
-                <path d="M22.2926 9.54465C22.2926 10.3742 21.7534 11.0776 21.0068 11.323C20.8227 11.3835 20.6257 11.4163 20.4209 11.4163C19.3865 11.4163 18.5492 10.5781 18.5492 9.54465C18.5492 9.45565 18.5552 9.36837 18.5673 9.28369C18.6944 8.37377 19.4755 7.67383 20.4209 7.67383C20.4321 7.67383 20.4433 7.67383 20.4546 7.67383C21.3498 7.68938 22.0921 8.33315 22.258 9.18345C22.2805 9.30097 22.2926 9.42108 22.2926 9.54465Z" fill="#00BF53"/>
-                <path d="M27.6847 5.96935C27.4082 6.75138 26.8241 7.38737 26.0792 7.73475C27.6666 9.90629 28.605 12.5807 28.605 15.4704C28.605 22.7126 22.7134 28.6041 15.4712 28.6041C13.0439 28.6041 10.7687 27.9422 8.81576 26.7895C8.59455 27.5862 8.06312 28.2525 7.35799 28.6499C9.77235 30.1423 12.56 30.9407 15.4704 30.9407C19.6026 30.9407 23.4877 29.3317 26.4101 26.4093C29.3317 23.4877 30.9416 19.6026 30.9416 15.4695C30.9416 11.9836 29.7966 8.67318 27.6839 5.96848L27.6847 5.96935ZM15.4712 2.33658C17.7828 2.33658 19.9569 2.93715 21.8459 3.99051C22.1016 3.19898 22.6694 2.54743 23.4039 2.18104C21.031 0.759562 18.3099 0,15.4712 0C11.339 0 7.45391 1.60899 4.53145 4.53145C1.60986 7.45305 0 11.3381 0 15.4712C0 18.8361 1.06719 22.036 3.03998 24.6862C3.37785 23.9448 4.00088 23.3615 4.76909 23.0764C3.23786 20.929 2.33658 18.303 2.33658 15.4712C2.33658 8.22903 8.22816 2.33745 15.4704 2.33745L15.4712 2.33658Z" fill="#00BF53"/>
-                <path d="M7.81337 25.9882C7.81337 26.0357 7.81164 26.0832 7.80818 26.1299C7.74683 27.0044 7.12553 27.7242 6.29943 27.9324C6.14216 27.9722 5.97711 27.9929 5.80774 27.9929C4.69994 27.9929 3.80298 27.0951 3.80298 25.9882C3.80298 25.8767 3.81162 25.7669 3.82977 25.6598C3.96976 24.8086 4.6455 24.1389 5.49839 24.0067C5.59862 23.9912 5.70232 23.9834 5.80774 23.9834C6.91554 23.9834 7.8125 24.8812 7.8125 25.9882H7.81337Z" fill="#00BF53"/>
-                <path d="M26.7843 4.91687V4.93933C26.7843 5.83888 26.1924 6.60017 25.3758 6.85422C25.1874 6.91298 24.9869 6.94409 24.7795 6.94409C23.6717 6.94409 22.7748 6.04627 22.7748 4.93933C22.7748 4.81663 22.786 4.69738 22.8076 4.58072C22.9632 3.71487 23.6752 3.04258 24.5609 2.94667C24.6326 2.93889 24.7061 2.93457 24.7795 2.93457C25.8796 2.93457 26.7722 3.81943 26.7843 4.91687Z" fill="#00BF53"/>
+            <svg class="site-logo game-logo" width="134" height="31" viewBox="0 0 134 31" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M75.5535 4.09668L68.2551 26.6027H61.4389L57.1304 12.9064L52.6292 26.6027H45.813L38.5146 4.09668H45.0733L49.6065 18.4687L54.3652 4.09668H60.2171L64.7502 18.5966L69.4761 4.09668H75.5526H75.5535Z"
+                    fill="#00BF53" />
+                <path
+                    d="M92.5282 19.4334H79.8602C80.3743 21.2014 81.8857 22.2306 84.1367 22.2306C85.8407 22.2306 86.9658 21.7484 88.1557 20.7192L91.3711 24.0634C89.6991 25.9282 87.2562 26.8925 83.944 26.8925C77.7388 26.8925 73.7197 23.0662 73.7197 17.8581C73.7197 12.6501 77.8027 8.8877 83.3011 8.8877C88.4452 8.8877 92.625 12.167 92.625 17.9221C92.625 18.3723 92.561 18.9513 92.5282 19.4334ZM79.7643 16.218H86.9019C86.5804 14.3852 85.2298 13.2282 83.3331 13.2282C81.4363 13.2282 80.1177 14.3852 79.7643 16.218Z"
+                    fill="#00BF53" />
+                <path d="M97.6724 4.09668H104.038V21.5545H114.777V26.6027H97.6724V4.09668Z" fill="#00BF53" />
+                <path
+                    d="M133.424 19.4334H120.756C121.27 21.2014 122.781 22.2306 125.032 22.2306C126.736 22.2306 127.861 21.7484 129.051 20.7192L132.267 24.0634C130.595 25.9282 128.152 26.8925 124.84 26.8925C118.634 26.8925 114.615 23.0662 114.615 17.8581C114.615 12.6501 118.698 8.8877 124.197 8.8877C129.341 8.8877 133.52 12.167 133.52 17.9221C133.52 18.3723 133.457 18.9513 133.424 19.4334ZM120.66 16.218H127.797C127.476 14.3852 126.125 13.2282 124.229 13.2282C122.332 13.2282 121.013 14.3852 120.66 16.218Z"
+                    fill="#00BF53" />
+                <path
+                    d="M15.4186 10.9343C15.4713 10.9204 15.5179 10.9403 15.5637 10.9628C15.8022 11.0812 16.446 12.9943 16.6957 13.4091C17.4095 14.5921 18.6668 14.5809 19.7253 15.1961C19.8939 15.2938 20.1367 15.3966 19.9664 15.6299C19.8429 15.7993 18.2719 16.354 17.9427 16.5148C16.2689 17.3339 16.5981 18.2897 15.8212 19.6394C15.6666 19.9082 15.4678 20.2115 15.2311 19.8321C14.7238 19.0207 14.6607 17.8438 13.9072 17.1024C13.152 16.3584 11.9526 16.2901 11.1541 15.7543C11.0504 15.6852 10.9485 15.6135 10.9174 15.483C10.9338 15.4044 10.9813 15.3395 11.047 15.2946C11.5326 14.968 12.5341 14.6932 13.1114 14.4028C13.7016 14.1064 13.9841 13.8429 14.3116 13.2657C14.5043 12.9261 15.2233 10.9835 15.4168 10.9343H15.4186Z"
+                    fill="#00BF53" />
+                <path
+                    d="M15.4712 6.21473C10.3677 6.21473 6.21558 10.3668 6.21558 15.4703C6.21558 17.1053 6.64159 18.6425 7.38905 19.9767C7.76495 19.2457 8.42513 18.6857 9.22358 18.4403C8.79325 17.5399 8.55216 16.5323 8.55216 15.4695C8.55216 11.6544 11.6561 8.55131 15.4703 8.55131C16.1469 8.55131 16.8019 8.64896 17.4206 8.83043C17.6194 7.99223 18.1612 7.28624 18.8888 6.86887C17.8302 6.44631 16.6766 6.21387 15.4703 6.21387L15.4712 6.21473ZM23.3252 10.5777C23.04 11.3804 22.4308 12.0303 21.6557 12.369C22.1258 13.3023 22.3902 14.3556 22.3902 15.4703C22.3902 19.2854 19.2863 22.3885 15.472 22.3885C14.6598 22.3885 13.8786 22.2476 13.1536 21.9893C12.9894 22.8171 12.4943 23.5257 11.8116 23.9707C12.935 24.4563 14.1724 24.7259 15.472 24.7259C20.5755 24.7259 24.7276 20.5738 24.7276 15.4703C24.7276 13.6756 24.2144 11.9983 23.3252 10.5768V10.5777Z"
+                    fill="#00BF53" />
+                <path
+                    d="M12.0372 21.3639C12.0372 21.4002 12.0363 21.4365 12.0338 21.4728C11.9819 22.3723 11.2958 23.1008 10.4153 23.2191C10.3332 23.2304 10.2493 23.2356 10.1647 23.2356C9.1303 23.2356 8.29297 22.3974 8.29297 21.3639C8.29297 21.3449 8.29297 21.3259 8.29383 21.3068C8.32062 20.4012 8.99032 19.6581 9.86221 19.5164C9.96072 19.5 10.0618 19.4922 10.1647 19.4922C11.1981 19.4922 12.0363 20.3304 12.0363 21.3639H12.0372Z"
+                    fill="#00BF53" />
+                <path
+                    d="M22.2926 9.54465C22.2926 10.3742 21.7534 11.0776 21.0068 11.323C20.8227 11.3835 20.6257 11.4163 20.4209 11.4163C19.3865 11.4163 18.5492 10.5781 18.5492 9.54465C18.5492 9.45565 18.5552 9.36837 18.5673 9.28369C18.6944 8.37377 19.4755 7.67383 20.4209 7.67383C20.4321 7.67383 20.4433 7.67383 20.4546 7.67383C21.3498 7.68938 22.0921 8.33315 22.258 9.18345C22.2805 9.30097 22.2926 9.42108 22.2926 9.54465Z"
+                    fill="#00BF53" />
+                <path
+                    d="M27.6847 5.96935C27.4082 6.75138 26.8241 7.38737 26.0792 7.73475C27.6666 9.90629 28.605 12.5807 28.605 15.4704C28.605 22.7126 22.7134 28.6041 15.4712 28.6041C13.0439 28.6041 10.7687 27.9422 8.81576 26.7895C8.59455 27.5862 8.06312 28.2525 7.35799 28.6499C9.77235 30.1423 12.56 30.9407 15.4704 30.9407C19.6026 30.9407 23.4877 29.3317 26.4101 26.4093C29.3317 23.4877 30.9416 19.6026 30.9416 15.4695C30.9416 11.9836 29.7966 8.67318 27.6839 5.96848L27.6847 5.96935ZM15.4712 2.33658C17.7828 2.33658 19.9569 2.93715 21.8459 3.99051C22.1016 3.19898 22.6694 2.54743 23.4039 2.18104C21.031 0.759562 18.3099 0,15.4712 0C11.339 0 7.45391 1.60899 4.53145 4.53145C1.60986 7.45305 0 11.3381 0 15.4712C0 18.8361 1.06719 22.036 3.03998 24.6862C3.37785 23.9448 4.00088 23.3615 4.76909 23.0764C3.23786 20.929 2.33658 18.303 2.33658 15.4712C2.33658 8.22903 8.22816 2.33745 15.4704 2.33745L15.4712 2.33658Z"
+                    fill="#00BF53" />
+                <path
+                    d="M7.81337 25.9882C7.81337 26.0357 7.81164 26.0832 7.80818 26.1299C7.74683 27.0044 7.12553 27.7242 6.29943 27.9324C6.14216 27.9722 5.97711 27.9929 5.80774 27.9929C4.69994 27.9929 3.80298 27.0951 3.80298 25.9882C3.80298 25.8767 3.81162 25.7669 3.82977 25.6598C3.96976 24.8086 4.6455 24.1389 5.49839 24.0067C5.59862 23.9912 5.70232 23.9834 5.80774 23.9834C6.91554 23.9834 7.8125 24.8812 7.8125 25.9882H7.81337Z"
+                    fill="#00BF53" />
+                <path
+                    d="M26.7843 4.91687V4.93933C26.7843 5.83888 26.1924 6.60017 25.3758 6.85422C25.1874 6.91298 24.9869 6.94409 24.7795 6.94409C23.6717 6.94409 22.7748 6.04627 22.7748 4.93933C22.7748 4.81663 22.786 4.69738 22.8076 4.58072C22.9632 3.71487 23.6752 3.04258 24.5609 2.94667C24.6326 2.93889 24.7061 2.93457 24.7795 2.93457C25.8796 2.93457 26.7722 3.81943 26.7843 4.91687Z"
+                    fill="#00BF53" />
             </svg>
 
-            <!-- Left-side controls: timer + exit -->
-            <div id="left-controls">
-                <div id="common-timer-wrap">
-                    <div id="common-timer-box">
-                        <span class="ct-label">⏱ Time Left</span>
-                        <span class="ct-val" id="gameTime">02:00</span>
+            <div id="game-layout-wrapper">
+                <!-- Top Row: Timer + Exit Button -->
+                <div class="game-top-bar">
+                    <div id="common-timer-wrap" style="margin-bottom: 0;">
+                        <div id="common-timer-box">
+                            <span class="ct-label">⏱ Time Left</span>
+                            <span class="ct-val" id="gameTime">03:00</span>
+                        </div>
+                    </div>
+                    <button class="exit-btn" onclick="resetGame()" style="margin:0; font-size: 0.9rem;">✕ Exit</button>
+                </div>
+
+                <div id="game-main-row">
+                    <!-- Left Spacer for 3-column centering -->
+                    <div class="game-spacer" style="width: 350px;"></div>
+                    <!-- Center: Turn indicators + Board -->
+                    <div id="game-center-cols">
+                        <div class="timers" style="width: 100%;">
+                            <div class="timer-box" id="playerBox">
+                                <span>👤 <span id="player-name-label">You</span></span>
+                            </div>
+                            <div class="timer-box" id="aiBox">
+                                <span>🤖 AI</span>
+                            </div>
+                        </div>
+
+                        <div class="board-wrap">
+                            <div id="board"></div>
+                        </div>
+
+                        <div id="status">Select a piece to begin</div>
+                    </div>
+
+                    <!-- Right: Game Leaderboard -->
+                    <div id="game-sidebar-right">
+                        <div class="game-lb-panel">
+                            <h3>🏆 Leaderboard</h3>
+                            <div id="game-lb-body"></div>
+                        </div>
                     </div>
                 </div>
-                <button class="exit-btn" onclick="resetGame()">✕ Exit</button>
             </div>
-
-            <!-- Turn indicators (no individual timers) -->
-            <div class="timers">
-                <div class="timer-box" id="playerBox">
-                    <span>� <span id="player-name-label">You</span></span>
-                </div>
-                <div class="timer-box" id="aiBox">
-                    <span>🤖 AI</span>
-                </div>
-            </div>
-
-            <div class="board-wrap">
-                <div id="board"></div>
-            </div>
-
-            <div id="status">Select a piece to begin</div>
         </div>
     </div>
 
@@ -1638,35 +2068,31 @@
             <!-- Admin controls (shown after login) -->
             <div id="admin-controls">
                 <div class="admin-section">
-                    <h3>📊 Leaderboard Preview</h3>
+                    <h3>👀 Leaderboard Preview</h3>
                     <div id="admin-lb-preview"></div>
                 </div>
 
                 <div class="admin-section">
-                    <h3>⚙️ Actions</h3>
-                    <div class="admin-btn-row">
-                        <button class="admin-action-btn btn-success" onclick="adminDownloadCSV()">
-                            ⬇️ Leaderboard CSV
+                    <h3>⚡ Admin Actions</h3>
+                    <div class="admin-btn-grid">
+                        <button class="admin-action-btn" onclick="adminDownloadCSV()">
+                            🏆 Leaderboard CSV
                         </button>
-                        <button class="admin-action-btn"
-                            style="background:linear-gradient(135deg,#818cf8,#38bdf8);color:#fff;box-shadow:0 4px 16px rgba(129,140,248,.35);flex:1"
-                            onclick="adminDownloadCredentials()">
+                        <button class="admin-action-btn" onclick="adminDownloadCredentials()">
                             📋 Player Credentials
                         </button>
-                        <button class="admin-action-btn btn-danger" onclick="adminReset()">
-                            🗑️ Reset Leaderboard
-                        </button>
                     </div>
+
                     <!-- Go to Game Menu -->
                     <button class="admin-action-btn"
-                        style="margin-top:10px;width:100%;background:linear-gradient(135deg,#00bf53,#009944);color:#fff;box-shadow:0 4px 16px rgba(0,191,83,.3);"
+                        style="margin-top:16px; width:100%; background:linear-gradient(135deg, #00bf53, #009944); color:#fff; border:none; box-shadow:0 8px 24px rgba(0, 191, 83, 0.2);"
                         onclick="adminGoToMenu()">
-                        🎮 Go to Game Menu
+                        🎮 Return to Game Menu
                     </button>
                 </div>
             </div>
 
-            <button class="admin-close" onclick="closeAdmin()">✕ Close</button>
+            <button class="admin-close" onclick="closeAdmin()">✕ Close Panel</button>
         </div>
     </div>
 
@@ -1676,7 +2102,7 @@
             <span id="result-emoji"></span>
             <div id="result-title"></div>
             <div id="result-reason"></div>
-            <button id="result-play-again" onclick="closeResult()">🔄 Play Again</button>
+            <button id="result-finish-btn" onclick="closeResult()">✅ Finish & View Results</button>
         </div>
     </div>
 
@@ -1703,16 +2129,33 @@
         let playerName = localStorage.getItem('weleName') || '';
         let playerPhone = localStorage.getItem('welePhone') || '';
 
-        function initNameScreen() {
+        async function initNameScreen() {
             if (playerName.trim() && playerPhone.trim()) {
-                // Already logged in — go straight to menu
+                // Already logged in — go straight to menu and check status
                 document.getElementById('login-layout').classList.add('hidden');
                 document.getElementById('menu').classList.remove('hidden');
                 updateGreeting();
+
+                // Fetch latest status from server
+                try {
+                    const displayPhone = playerPhone.replace('|', ' ');
+                    const res = await fetch('/api/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name: playerName, phone: displayPhone })
+                    });
+                    const data = await res.json();
+                    updateMenuStatus(data.hasPlayed, data.status);
+                    renderLeaderboard();
+                } catch (e) {
+                    // Fallback to local storage if offline
+                    const localPlayed = localStorage.getItem('weleHasPlayed') === 'true';
+                    const localStatus = localStorage.getItem('weleStatus');
+                    updateMenuStatus(localPlayed, localStatus);
+                }
             } else {
                 document.getElementById('login-layout').classList.remove('hidden');
                 document.getElementById('menu').classList.add('hidden');
-                // Pre-fill any saved values
                 if (playerName) document.getElementById('player-name-input').value = playerName;
                 if (playerPhone) {
                     const parts = playerPhone.split('|');
@@ -1725,7 +2168,34 @@
             }
         }
 
-        function confirmName() {
+        function updateMenuStatus(hasPlayed, status) {
+            const sc = document.getElementById('status-container');
+            const rc = document.getElementById('rules-card-wrap');
+            const sg = document.querySelector('.start-game-btn');
+
+            sc.innerHTML = '';
+            if (hasPlayed && status) {
+                if (sg) sg.style.display = 'none';
+                if (rc) rc.style.display = 'none';
+
+                sc.innerHTML = `
+                    <div class="played-status-card">
+                        <div class="psc-icon">🏆</div>
+                        <div class="psc-content">
+                            <div class="psc-label">You've finished your match</div>
+                            <div class="psc-value">Result: <span class="psc-res-${status.toLowerCase()}">${status}</span></div>
+                        </div>
+                        <div class="psc-badge">Recorded</div>
+                    </div>`;
+                localStorage.setItem('weleHasPlayed', 'true');
+                localStorage.setItem('weleStatus', status);
+            } else {
+                if (sg) sg.style.display = 'block';
+                if (rc) rc.style.display = 'block';
+            }
+        }
+
+        async function confirmName() {
             const nameVal = document.getElementById('player-name-input').value.trim();
             const prefix = document.getElementById('phone-prefix').value.trim();
             const numVal = document.getElementById('phone-number-input').value.trim();
@@ -1736,8 +2206,8 @@
                 document.getElementById('player-name-input').focus();
                 return;
             }
-            if (!/^[A-Za-z\s]{2,}$/.test(nameVal)) {
-                errEl.textContent = '⚠ Name must contain only letters (min 2 chars).';
+            if (!/^[A-Za-z\s]{2,25}$/.test(nameVal)) {
+                errEl.textContent = '⚠ Name must be 2-25 letters only.';
                 document.getElementById('player-name-input').focus();
                 return;
             }
@@ -1746,34 +2216,51 @@
                 document.getElementById('phone-number-input').focus();
                 return;
             }
-            if (!/^[0-9]{6,15}$/.test(numVal)) {
-                errEl.textContent = '⚠ Enter a valid phone number (digits only, 6-15 digits).';
+            if (!/^[0-9]{10}$/.test(numVal)) {
+                errEl.textContent = '⚠ Please enter exactly 10 digits.';
                 document.getElementById('phone-number-input').focus();
                 return;
             }
 
             errEl.textContent = '';
-            playerName = nameVal;
-            playerPhone = prefix + '|' + numVal;  // stored as prefix|number internally
-            localStorage.setItem('weleName', playerName);
-            localStorage.setItem('welePhone', playerPhone);
+            const fullPhone = prefix + ' ' + numVal;
+            const internalPhone = prefix + '|' + numVal;
 
-            // ── Save login credential immediately ──
-            saveCredential(playerName, prefix + ' ' + numVal);
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: nameVal, phone: fullPhone })
+                });
+                const data = await res.json();
 
-            // Animate out login layout, animate in menu
-            const ns = document.getElementById('login-layout');
-            ns.style.opacity = '0';
-            ns.style.transform = 'scale(.96)';
-            ns.style.transition = 'opacity .3s, transform .3s';
-            setTimeout(() => {
-                ns.classList.add('hidden');
-                ns.style.opacity = '';
-                ns.style.transform = '';
-                ns.style.transition = '';
-                document.getElementById('menu').classList.remove('hidden');
-                updateGreeting();
-            }, 300);
+                if (data.error) throw new Error(data.error);
+
+                // Use the name returned from DB (prevents change)
+                playerName = data.user.name;
+                playerPhone = internalPhone;
+
+                localStorage.setItem('weleName', playerName);
+                localStorage.setItem('welePhone', playerPhone);
+
+                const hasPlayed = data.hasPlayed;
+                localStorage.setItem('weleHasPlayed', hasPlayed);
+
+                // Transition to menu
+                const ns = document.getElementById('login-layout');
+                ns.style.opacity = '0';
+                ns.style.transform = 'scale(.96)';
+                setTimeout(() => {
+                    ns.classList.add('hidden');
+                    ns.style.opacity = ''; ns.style.transform = '';
+                    document.getElementById('menu').classList.remove('hidden');
+                    updateGreeting();
+                    updateMenuStatus(data.hasPlayed, data.status);
+                    renderLeaderboard();
+                }, 300);
+            } catch (e) {
+                errEl.textContent = '⚠ ' + e.message;
+            }
         }
 
         function updateGreeting() {
@@ -1800,11 +2287,11 @@
         }
 
         function logout() {
-            // Clear session — credentials log (weleCredentials) is intentionally kept for admin
-            playerName = '';
-            playerPhone = '';
+            // Clear session 
+            playerName = ''; playerPhone = '';
             localStorage.removeItem('weleName');
             localStorage.removeItem('welePhone');
+            localStorage.removeItem('weleHasPlayed');
 
             // Clear the login fields so no pre-fill on next login
             document.getElementById('player-name-input').value = '';
@@ -1852,6 +2339,7 @@
 
             function draw() {
                 ctx.clearRect(0, 0, W, H);
+                ctx.fillStyle = 'rgba(0, 230, 80, 0.4)';
                 pts.forEach(p => {
                     p.x += p.vx; p.y += p.vy;
                     if (p.y < -10) { p.y = H + 10; p.x = Math.random() * W; }
@@ -1859,9 +2347,6 @@
                     if (p.x > W) p.x = 0;
                     ctx.beginPath();
                     ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(0,230,80,${(p.a * .6).toFixed(2)})`;
-                    ctx.shadowColor = 'rgba(0,255,100,0.5)';
-                    ctx.shadowBlur = 4;
                     ctx.fill();
                 });
                 requestAnimationFrame(draw);
@@ -1896,6 +2381,7 @@
 
         /* ── start / reset ── */
         function startGame(secs) {
+            clearInterval(timer); // Prevent duplicate intervals if clicked multiple times
             menu.classList.add('hidden');
             gameUI.classList.remove('hidden');
 
@@ -2160,18 +2646,60 @@
         /* ── check if a side's king is in check ── */
         function isInCheck(isWhite, b = board) {
             const kingPos = findKing(isWhite, b);
-            if (!kingPos) return false; // Should not happen in a valid game
+            if (!kingPos) return false;
             const [kr, kc] = kingPos;
+            const oppIsWhite = !isWhite;
 
-            const opponentIsWhite = !isWhite;
-            for (let r = 0; r < 8; r++) {
-                for (let c = 0; c < 8; c++) {
-                    const piece = b[r][c];
-                    if (piece && (piece === piece.toUpperCase()) === opponentIsWhite) {
-                        const pseudoMoves = getPseudoMoves(r, c, b);
-                        if (pseudoMoves.some(([tr, tc]) => tr === kr && tc === kc)) {
-                            return true;
+            // 1. Knight checks
+            const knMoves = [[2, 1], [2, -1], [-2, 1], [-2, -1], [1, 2], [1, -2], [-1, 2], [-1, -2]];
+            for (const [dr, dc] of knMoves) {
+                const r = kr + dr, c = kc + dc;
+                if (r >= 0 && r < 8 && c >= 0 && c < 8) {
+                    const p = b[r][c];
+                    if (p && p.toLowerCase() === 'n' && (p === p.toUpperCase()) === oppIsWhite) return true;
+                }
+            }
+
+            // 2. Linear (Rook/Queen) and Diagonal (Bishop/Queen)
+            const dirs = [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [1, -1], [-1, 1], [-1, -1]];
+            for (let i = 0; i < 8; i++) {
+                const [dr, dc] = dirs[i];
+                let r = kr + dr, c = kc + dc;
+                while (r >= 0 && r < 8 && c >= 0 && c < 8) {
+                    const p = b[r][c];
+                    if (p) {
+                        if ((p === p.toUpperCase()) === oppIsWhite) {
+                            const pl = p.toLowerCase();
+                            if (i < 4) { // Rook/Queen
+                                if (pl === 'r' || pl === 'q') return true;
+                            } else { // Bishop/Queen
+                                if (pl === 'b' || pl === 'q') return true;
+                            }
                         }
+                        break;
+                    }
+                    r += dr; c += dc;
+                }
+            }
+
+            // 3. Pawn attacks
+            const pDir = isWhite ? -1 : 1;
+            for (const dc of [-1, 1]) {
+                const r = kr + pDir, c = kc + dc;
+                if (r >= 0 && r < 8 && c >= 0 && c < 8) {
+                    const p = b[r][c];
+                    if (p && p.toLowerCase() === 'p' && (p === p.toUpperCase()) === oppIsWhite) return true;
+                }
+            }
+
+            // 4. Opponent King
+            for (const dr of [-1, 0, 1]) {
+                for (const dc of [-1, 0, 1]) {
+                    if (dr === 0 && dc === 0) continue;
+                    const r = kr + dr, c = kc + dc;
+                    if (r >= 0 && r < 8 && c >= 0 && c < 8) {
+                        const p = b[r][c];
+                        if (p && p.toLowerCase() === 'k' && (p === p.toUpperCase()) === oppIsWhite) return true;
                     }
                 }
             }
@@ -2213,6 +2741,9 @@
                 const isValid = validMoves.some(([tr, tc]) => tr === r && tc === c);
 
                 if (isValid) {
+                    // Prevent double-clicks during animation
+                    currentTurn = null;
+
                     const moveInfo = {
                         sr: selected.r,
                         sc: selected.c,
@@ -2240,7 +2771,10 @@
                         if (gameState === 'normal' || gameState === 'check') {
                             currentTurn = 'ai';
                             setStatus('AI is thinking…');
-                            setTimeout(aiMove, 500 + Math.random() * 300);
+                            setTimeout(aiMove, 250 + Math.random() * 200);
+                        } else {
+                            // Either checkmate or draw, endGame will be called by checkGameState
+                            currentTurn = null;
                         }
                     });
                     return;
@@ -2277,7 +2811,7 @@
             // Build a flying clone pinned to source square via fixed position
             const ghost = pi.cloneNode(true);
             ghost.classList.add('flying');
-            const FLY_DUR = 320; // ms – silky smooth
+            const FLY_DUR = 220; // ms – snappy and responsive
             ghost.style.cssText = [
                 `width:${from.width}px`,
                 `height:${from.height}px`,
@@ -2499,128 +3033,126 @@
         }
 
 
-            // Robust move/capture sound playback:
-            // Try to play the <audio> element; if that fails (autoplay blocked, missing file, CORS, etc.)
-            // fall back to a small synthesized "coin" sound using WebAudio.
-            let _audioCtx = null;
-            function _ensureAudioCtx() {
-                if (!_audioCtx) {
-                    const Ctx = window.AudioContext || window.webkitAudioContext;
-                    if (Ctx) _audioCtx = new Ctx();
-                }
+        // Robust move/capture sound playback:
+        // Try to play the <audio> element; if that fails (autoplay blocked, missing file, CORS, etc.)
+        // fall back to a small synthesized "coin" sound using WebAudio.
+        let _audioCtx = null;
+        function _ensureAudioCtx() {
+            if (!_audioCtx) {
+                const Ctx = window.AudioContext || window.webkitAudioContext;
+                if (Ctx) _audioCtx = new Ctx();
             }
+        }
 
-            function _synthCoin(opts = {}) {
-                try {
-                    _ensureAudioCtx();
-                    if (!_audioCtx) return;
-                    const ctx = _audioCtx;
-                    const now = ctx.currentTime;
+        function _synthCoin(opts = {}) {
+            try {
+                _ensureAudioCtx();
+                if (!_audioCtx) return;
+                const ctx = _audioCtx;
+                const now = ctx.currentTime;
 
-                    const duration = opts.duration || 0.25;
-                    const attack = Math.min(0.012, duration * 0.12);
+                const duration = opts.duration || 0.25;
+                const attack = Math.min(0.012, duration * 0.12);
 
-                    // Metallic ring (short pitched oscillator sweep)
-                    const osc = ctx.createOscillator();
-                    const oscGain = ctx.createGain();
-                    osc.type = opts.type || 'triangle';
-                    const startF = opts.startFreq || 900;
-                    const endF = opts.endFreq || 200;
-                    osc.frequency.setValueAtTime(startF, now);
-                    osc.frequency.exponentialRampToValueAtTime(endF, now + duration * 0.9);
+                // Metallic ring (short pitched oscillator sweep)
+                const osc = ctx.createOscillator();
+                const oscGain = ctx.createGain();
+                osc.type = opts.type || 'triangle';
+                const startF = opts.startFreq || 900;
+                const endF = opts.endFreq || 200;
+                osc.frequency.setValueAtTime(startF, now);
+                osc.frequency.exponentialRampToValueAtTime(endF, now + duration * 0.9);
 
-                    oscGain.gain.setValueAtTime(0.0001, now);
-                    oscGain.gain.linearRampToValueAtTime(0.6, now + attack); // Lowered oscillator gain
-                    oscGain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+                oscGain.gain.setValueAtTime(0.0001, now);
+                oscGain.gain.linearRampToValueAtTime(0.6, now + attack); // Lowered oscillator gain
+                oscGain.gain.exponentialRampToValueAtTime(0.001, now + duration);
 
-                    // Wooden body: a short low-frequency filtered noise burst
-                    const noiseBuf = ctx.createBuffer(1, ctx.sampleRate * 0.06, ctx.sampleRate);
-                    const data = noiseBuf.getChannelData(0);
-                    for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * 0.7;
-                    const noise = ctx.createBufferSource();
-                    noise.buffer = noiseBuf;
-                    const noiseFilter = ctx.createBiquadFilter();
-                    noiseFilter.type = 'bandpass';
-                    noiseFilter.frequency.value = opts.bodyFreq || 350; // deeper wooden thud
-                    noiseFilter.Q.value = 1.6;
-                    const noiseGain = ctx.createGain();
-                    noiseGain.gain.setValueAtTime(0.0001, now);
-                    noiseGain.gain.linearRampToValueAtTime(0.9 * (opts.noiseLevel || 0.9), now + attack); // Emphasize thud
-                    noiseGain.gain.exponentialRampToValueAtTime(0.0001, now + duration * 0.95);
+                // Wooden body: a short low-frequency filtered noise burst
+                const noiseBuf = ctx.createBuffer(1, ctx.sampleRate * 0.06, ctx.sampleRate);
+                const data = noiseBuf.getChannelData(0);
+                for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * 0.7;
+                const noise = ctx.createBufferSource();
+                noise.buffer = noiseBuf;
+                const noiseFilter = ctx.createBiquadFilter();
+                noiseFilter.type = 'bandpass';
+                noiseFilter.frequency.value = opts.bodyFreq || 350; // deeper wooden thud
+                noiseFilter.Q.value = 1.6;
+                const noiseGain = ctx.createGain();
+                noiseGain.gain.setValueAtTime(0.0001, now);
+                noiseGain.gain.linearRampToValueAtTime(0.9 * (opts.noiseLevel || 0.9), now + attack); // Emphasize thud
+                noiseGain.gain.exponentialRampToValueAtTime(0.0001, now + duration * 0.95);
 
-                    // Small click transient: highpass filtered short noise
-                    const clickBuf = ctx.createBuffer(1, ctx.sampleRate * 0.02, ctx.sampleRate);
-                    const cdata = clickBuf.getChannelData(0);
-                    for (let i = 0; i < cdata.length; i++) cdata[i] = (Math.random() * 2 - 1) * (0.8 * (opts.clickLevel || 0.7));
-                    const click = ctx.createBufferSource();
-                    click.buffer = clickBuf;
-                    const clickFilter = ctx.createBiquadFilter();
-                    clickFilter.type = 'highpass';
-                    clickFilter.frequency.value = 1500; // Less sharp click
-                    const clickGain = ctx.createGain();
-                    clickGain.gain.setValueAtTime(1.0, now);
-                    clickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+                // Small click transient: highpass filtered short noise
+                const clickBuf = ctx.createBuffer(1, ctx.sampleRate * 0.02, ctx.sampleRate);
+                const cdata = clickBuf.getChannelData(0);
+                for (let i = 0; i < cdata.length; i++) cdata[i] = (Math.random() * 2 - 1) * (0.8 * (opts.clickLevel || 0.7));
+                const click = ctx.createBufferSource();
+                click.buffer = clickBuf;
+                const clickFilter = ctx.createBiquadFilter();
+                clickFilter.type = 'highpass';
+                clickFilter.frequency.value = 1500; // Less sharp click
+                const clickGain = ctx.createGain();
+                clickGain.gain.setValueAtTime(1.0, now);
+                clickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
 
-                    // Master shaping & slight damping to simulate wood resonance
-                    const master = ctx.createGain();
-                    master.gain.setValueAtTime(1.0, now);
-                    const lp = ctx.createBiquadFilter();
-                    lp.type = 'lowpass';
-                    lp.frequency.value = 6500;
+                // Master shaping & slight damping to simulate wood resonance
+                const master = ctx.createGain();
+                master.gain.setValueAtTime(1.0, now);
+                const lp = ctx.createBiquadFilter();
+                lp.type = 'lowpass';
+                lp.frequency.value = 6500;
 
-                    // Connect oscillator path
-                    osc.connect(oscGain);
-                    oscGain.connect(master);
+                // Connect oscillator path
+                osc.connect(oscGain);
+                oscGain.connect(master);
 
-                    // Connect noise (body)
-                    noise.connect(noiseFilter);
-                    noiseFilter.connect(noiseGain);
-                    noiseGain.connect(master);
+                // Connect noise (body)
+                noise.connect(noiseFilter);
+                noiseFilter.connect(noiseGain);
+                noiseGain.connect(master);
 
-                    // Connect click
-                    click.connect(clickFilter);
-                    clickFilter.connect(clickGain);
-                    clickGain.connect(master);
+                // Connect click
+                click.connect(clickFilter);
+                clickFilter.connect(clickGain);
+                clickGain.connect(master);
 
-                    // Master -> lowpass -> destination
-                    master.connect(lp);
-                    lp.connect(ctx.destination);
+                // Master -> lowpass -> destination
+                master.connect(lp);
+                lp.connect(ctx.destination);
 
-                    // Start sources
-                    osc.start(now);
-                    osc.stop(now + duration);
-                    noise.start(now);
-                    noise.stop(now + Math.min(0.06, duration));
-                    click.start(now);
-                    click.stop(now + 0.03);
-                } catch (e) { /* silent fallback */ }
+                // Start sources
+                osc.start(now);
+                osc.stop(now + duration);
+                noise.start(now);
+                noise.stop(now + Math.min(0.06, duration));
+                click.start(now);
+                click.stop(now + 0.03);
+            } catch (e) { /* silent fallback */ }
+        }
+
+        function playMoveSound() {
+            const el = document.getElementById('move-sound');
+            if (el) {
+                const p = el.play();
+                if (p && typeof p.catch === 'function') p.catch(() => _synthCoin());
+            } else {
+                _synthCoin();
+                // The original code had a redundant `if (p && typeof p.catch === 'function')` here.
+                // Removed it as `p` would not be defined in this `else` block.
             }
+        }
 
-            function playMoveSound() {
-                const el = document.getElementById('move-sound');
-                if (el) {
-                    const p = el.play();
-                    if (p && typeof p.catch === 'function') p.catch(() => _synthCoin());
-                } else {
-                    _synthCoin();
-                    if (p && typeof p.catch === 'function') {
-                        p.catch(e => console.error("Move sound failed to play:", e));
-                    }
-                }
+        function playCaptureSound() {
+            const el = document.getElementById('capture-sound');
+            if (el) {
+                const p = el.play();
+                if (p && typeof p.catch === 'function') p.catch(() => _synthCoin({ startFreq: 700, endFreq: 120 }));
+            } else {
+                _synthCoin({ startFreq: 700, endFreq: 120 });
+                // The original code had a redundant `if (p && typeof p.catch === 'function')` here.
+                // Removed it as `p` would not be defined in this `else` block.
             }
-
-            function playCaptureSound() {
-                const el = document.getElementById('capture-sound');
-                if (el) {
-                    const p = el.play();
-                    if (p && typeof p.catch === 'function') p.catch(() => _synthCoin({ startFreq: 700, endFreq: 120 }));
-                } else {
-                    _synthCoin({ startFreq: 700, endFreq: 120 });
-                    if (p && typeof p.catch === 'function') {
-                        p.catch(e => console.error("Capture sound failed to play:", e));
-                    }
-                }
-            }
+        }
 
         /* ── AI move ── */
         function aiMove() {
@@ -2682,7 +3214,10 @@
                     `box-shadow:0 0 6px 2px ${colors[Math.floor(Math.random() * colors.length)]}55`,
                 ].join(';');
                 document.body.appendChild(spark);
-                spark.addEventListener('animationend', () => spark.remove(), { once: true });
+                // Combined fallback for spark removal
+                const cleanup = () => spark.remove();
+                spark.addEventListener('animationend', cleanup, { once: true });
+                setTimeout(cleanup, 1200); // Absolute safety timeout
             }
         }
 
@@ -2725,14 +3260,33 @@
             clearInterval(timer);
             currentTurn = null; // freeze board
 
-            // Determine outcome
+            // Determine outcome more robustly
             const lowerMsg = msg.toLowerCase();
-            const isPlayerWin = lowerMsg.includes('you win') || lowerMsg.includes('you win') || lowerMsg.includes('🎉');
-            const isAIWin = lowerMsg.includes('ai wins') || lowerMsg.includes('you lose') || lowerMsg.includes('time up') ||
-                lowerMsg.includes('🤖');
-            const isDraw = lowerMsg.includes('draw') || lowerMsg.includes('stalemate') ||
-                lowerMsg.includes('repetition') || lowerMsg.includes('material') ||
-                lowerMsg.includes('🤝');
+
+            // 1. Draw Check (takes precedence)
+            const isDraw = lowerMsg.includes('draw') ||
+                lowerMsg.includes('stalemate') ||
+                lowerMsg.includes('50-move rule') ||
+                lowerMsg.includes('insufficient material') ||
+                lowerMsg.includes('time') ||
+                lowerMsg.includes('timeout') ||
+                lowerMsg.includes('⏳');
+
+            // 2. AI Win Check
+            const isAIWin = !isDraw && (
+                lowerMsg.includes('ai wins') ||
+                lowerMsg.includes('you lose') ||
+                lowerMsg.includes('lost')
+            );
+
+            // 3. Player Win Check
+            const isPlayerWin = !isDraw && !isAIWin && (
+                lowerMsg.includes('you win') ||
+                lowerMsg.includes('player wins') ||
+                lowerMsg.includes('checkmate') ||
+                lowerMsg.includes('ai has no moves') ||
+                lowerMsg.includes('victory')
+            );
 
             let emoji, title, titleClass, reason;
 
@@ -2746,7 +3300,7 @@
                 title = "It's a Draw!";
                 titleClass = 'draw-result';
                 reason = msg.replace(/🤝/g, '').trim();
-            } else {
+            } else { // Default to player win if not explicitly AI win or draw
                 emoji = '🏆';
                 title = 'Player Wins!';
                 titleClass = 'player-win';
@@ -2761,22 +3315,29 @@
 
             // Play an appropriate end-game audio: draw sound for draws (fallback to synth)
             (function playEndAudio() {
-                if (isDraw) {
-                    const el = document.getElementById('comment-draw');
-                    if (el) {
-                        const p = el.play();
-                        if (p && typeof p.catch === 'function') p.catch(() => _synthCoin({ startFreq: 900, endFreq: 400 }));
-                    } else {
-                        _synthCoin({ startFreq: 900, endFreq: 400 });
+                try {
+                    if (isDraw) {
+                        const el = document.getElementById('comment-draw');
+                        if (el) el.play().catch(() => _synthCoin({ startFreq: 900, endFreq: 400 }));
+                        else _synthCoin({ startFreq: 900, endFreq: 400 });
+                    } else if (isPlayerWin) {
+                        const el = document.getElementById('comment-good1'); // Play a victory-like sound
+                        if (el) el.play().catch(() => { });
                     }
-                }
+                } catch (e) { }
             })();
 
             // ── Record to leaderboard ──
             if (playerName) {
-                // timeUsed = seconds elapsed during the game
-                const timeUsed = (gameStartSecs || gameTime) - gameTime;
-                lbRecord(playerName, timeUsed);
+                const timeUsed = (gameStartSecs || 180) - gameTime;
+                let result = isPlayerWin ? 'win' : (isDraw ? 'draw' : 'lose');
+
+                console.log("[Endgame] Recording result for:", playerName, "Result:", result);
+                lbRecord(playerName, timeUsed, result);
+
+                // Cache locally for immediate menu update
+                localStorage.setItem('weleHasPlayed', 'true');
+                localStorage.setItem('weleStatus', result.toUpperCase());
             }
 
             document.getElementById('result-overlay').classList.add('show');
@@ -2785,10 +3346,13 @@
         function closeResult() {
             document.getElementById('result-overlay').classList.remove('show');
             resetGame();
+            // Refresh menu view to show 'already played' state
+            const status = localStorage.getItem('weleStatus');
+            updateMenuStatus(true, status);
         }
 
         // Leaderboard filter removed — sorting controls replace the previous filter UI
-        
+
         function updateLeaderboard(filterValue) {
             // Re-render leaderboard (filter param kept for compatibility, but sorting takes precedence)
             renderLeaderboard();
@@ -2814,26 +3378,26 @@
             localStorage.setItem(LB_KEY, JSON.stringify(data));
         }
 
-        function lbRecord(name, timeUsedSecs) {
-            // timeUsedSecs: seconds the player took to finish the game
-            if (!name || name === 'Admin') return; // admin never appears on leaderboard
-            const data = lbLoad();
-            if (!data[name]) data[name] = { played: 0, lastPlayed: null, phone: '', bestTime: null };
-            const p = data[name];
-            const now = new Date().toISOString();
-            // Always update phone in case it changed
-            if (playerPhone) {
-                const parts = playerPhone.split('|');
-                p.phone = parts.length === 2 ? parts[0] + ' ' + parts[1] : playerPhone;
+        async function lbRecord(name, timeUsedSecs, result) {
+            if (!name) return;
+
+            const parts = playerPhone.split('|');
+            const displayPhone = parts.length === 2 ? parts[0] + ' ' + parts[1] : playerPhone;
+
+            try {
+                console.log(`[Leaderboard] Sending record request for ${name}, result: ${result}, time: ${timeUsedSecs}`);
+                const res = await fetch('/api/leaderboard/record', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, timeUsed: timeUsedSecs, phone: displayPhone, result })
+                });
+                const data = await res.json();
+                console.log("[Leaderboard] Record success:", data);
+                renderLeaderboard();
+            } catch (e) {
+                console.error("[Leaderboard] Score recording error:", e);
+                alert("Failed to save your score. Please check your connection.");
             }
-            p.played++;
-            p.lastPlayed = now;
-            // bestTime = lowest (fastest) completion time
-            if (timeUsedSecs != null && (p.bestTime == null || timeUsedSecs < p.bestTime)) {
-                p.bestTime = timeUsedSecs;
-            }
-            lbSave(data);
-            renderLeaderboard();
         }
 
         function fmtTime(iso) {
@@ -2845,6 +3409,93 @@
             const hh = String(d.getHours()).padStart(2, '0');
             const mm = String(d.getMinutes()).padStart(2, '0');
             return `${day} ${mon}, ${hh}:${mm}`;
+        }
+
+        async function renderLeaderboard() {
+            try {
+                console.log("[Leaderboard] Fetching leaderboard data...");
+                const res = await fetch('/api/leaderboard');
+                const allRows = await res.json();
+                console.log("[Leaderboard] Received data:", allRows);
+
+                // Winners from server (already filtered for status: 'WIN' and sorted by timeUsed)
+                const winners = allRows;
+
+                const mb = document.getElementById('menu-lb-body');
+                const lb = document.getElementById('login-lb-body');
+                const gb = document.getElementById('game-lb-body');
+
+                if (!winners.length) {
+                    const empty = '<p class="lb-empty">No winners yet — be the first to checkmate the AI!</p>';
+                    if (mb) mb.innerHTML = empty;
+                    if (lb) lb.innerHTML = empty;
+                    if (gb) gb.innerHTML = empty;
+                    console.log("[Leaderboard] No winners to display.");
+                    return;
+                }
+
+
+                let html = `<table class="lb-table">
+                    <thead><tr>
+                        <th>#</th>
+                        <th style="text-align:left;">Player</th>
+                        <th style="text-align:center;">STATUS</th>
+                        <th style="text-align:left;">Time</th>
+                    </tr></thead><tbody>`;
+
+                winners.forEach((p, i) => {
+                    const me = playerName && p.name === playerName ? ' lb-me' : '';
+                    const bt = fmtDuration(p.timeUsed);
+                    const statusColor = p.status === 'WIN' ? '#22c55e' : '#94a3b8';
+                    html += `<tr class="${me}">
+                        <td>${i + 1}</td>
+                        <td>${p.name}</td>
+                        <td style="text-align:center; font-weight:700; color:${statusColor};">${p.status}</td>
+                        <td class="lb-time lb-wins" style="font-weight:700">${bt}</td>
+                    </tr>`;
+                });
+                html += '</tbody></table>';
+
+                if (mb) mb.innerHTML = html;
+                if (lb) lb.innerHTML = html;
+                if (gb) gb.innerHTML = html;
+                console.log("[Leaderboard] Public leaderboards rendered.");
+
+                // ── ADMIN PREVIEW (Show ALL data, no filters) ──
+                const adminPrev = document.getElementById('admin-lb-preview');
+                if (adminPrev) {
+                    const adminRes = await fetch('/api/admin/leaderboard');
+                    const adminData = await adminRes.json();
+
+                    if (!adminData.length) {
+                        adminPrev.innerHTML = '<p class="lb-empty">No player data in database.</p>';
+                    } else {
+                        let adminHtml = `<table class="lb-table" style="font-size:0.85rem;">
+                            <thead><tr>
+                                <th>#</th>
+                                <th style="text-align:left;">Player</th>
+                                <th style="text-align:center;">STATUS</th>
+                                <th style="text-align:left;">Time ⏱</th>
+                            </tr></thead><tbody>`;
+
+                        adminData.forEach((p, i) => {
+                            const bt = p.timeUsed ? fmtDuration(p.timeUsed) : '—';
+                            const statusColor = p.status === 'WIN' ? '#22c55e' : '#94a3b8';
+                            adminHtml += `<tr>
+                                <td>${i + 1}</td>
+                                <td style="text-align:left; font-weight:600;">${p.name}</td>
+                                <td style="text-align:center; color:${statusColor}; font-weight:700;">${p.status || '—'}</td>
+                                <td style="text-align:left; font-weight:600;">${bt}</td>
+                            </tr>`;
+                        });
+                        adminHtml += '</tbody></table>';
+                        adminPrev.innerHTML = adminHtml;
+                    }
+                }
+
+            } catch (e) {
+                console.error("[Leaderboard] Leaderboard render failed", e);
+            }
         }
 
         /* ─────────── CREDENTIALS STORE (private, admin-only) ─────────── */
@@ -2875,47 +3526,6 @@
             return m > 0 ? `${m}m ${s}s` : `${s}s`;
         }
 
-        function lbTableHTML() {
-            const rows = lbSorted();
-            if (!rows.length) {
-                return '<p class="lb-empty">No games played yet — be the first!</p>';
-            }
-            // Find the best (lowest) win time among all players with a recorded time
-            const bestTime = rows.reduce((best, p) => {
-                if (p.bestTime == null) return best;
-                return best == null || p.bestTime < best ? p.bestTime : best;
-            }, null);
-
-            let html = `<table class="lb-table">
-                <thead><tr>
-                    <th>#</th>
-                    <th style="text-align:left;">Player</th>
-                    <th style="text-align:left;">Best Time ⏱</th>
-                </tr></thead><tbody>`;
-            rows.forEach((p, i) => {
-                const me = playerName && p.name === playerName ? ' lb-me' : '';
-                // Medal only for player(s) tied at the best time
-                const isBest = bestTime != null && p.bestTime === bestTime;
-                const rank = isBest ? '🥇' : `<span class="lb-rank">${i + 1}</span>`;
-                const bt = fmtDuration(p.bestTime);
-                html += `<tr class="${me}">
-                    <td>${rank}</td>
-                    <td>${p.name}</td>
-                    <td class="lb-time lb-wins" style="font-weight:700">${bt}</td>
-                </tr>`;
-            });
-            html += '</tbody></table>';
-            return html;
-        }
-
-        function renderLeaderboard() {
-            const html = lbTableHTML();
-            const mb = document.getElementById('menu-lb-body');
-            const lb = document.getElementById('login-lb-body');
-            if (mb) mb.innerHTML = html;
-            if (lb) lb.innerHTML = html;
-        }
-
         /* ─────────── ADMIN PANEL ─────────── */
         const ADMIN_USER = 'admin';     // change to your preferred username
         const ADMIN_PASSWORD = 'wele@123';  // change to your preferred password
@@ -2931,41 +3541,41 @@
             }
         }
 
-                // Global triple-tap / triple-click detector: ignores taps on form controls
-                // Use pointer events to avoid double-counting touch -> click sequences
-                (function() {
-                    const ignoreSelector = 'button, input, select, textarea, a';
-                    function handlePointerUp(e) {
-                        try {
-                            if (e.target && e.target.closest && e.target.closest(ignoreSelector)) return;
-                        } catch (err) {}
-                        // Only count primary mouse button or touch/pen
-                        if (e.pointerType === 'mouse' && e.button !== 0) return;
+        // Global triple-tap / triple-click detector: ignores taps on form controls
+        // Use pointer events to avoid double-counting touch -> click sequences
+        (function () {
+            const ignoreSelector = 'button, input, select, textarea, a';
+            function handlePointerUp(e) {
+                try {
+                    if (e.target && e.target.closest && e.target.closest(ignoreSelector)) return;
+                } catch (err) { }
+                // Only count primary mouse button or touch/pen
+                if (e.pointerType === 'mouse' && e.button !== 0) return;
+                titleClick();
+            }
+
+            if (window.PointerEvent) {
+                document.addEventListener('pointerup', handlePointerUp, { passive: true });
+            } else {
+                // Fallback for older browsers: guard against synthetic click after touch
+                let lastTouch = 0;
+                function fallbackHandler(e) {
+                    try {
+                        if (e.target && e.target.closest && e.target.closest(ignoreSelector)) return;
+                    } catch (err) { }
+                    const now = Date.now();
+                    if (e.type === 'touchend') {
+                        lastTouch = now; titleClick(); return;
+                    } else if (e.type === 'click') {
+                        // Ignore click if it closely follows a touch (synthetic click)
+                        if (now - lastTouch < 700) return;
                         titleClick();
                     }
-
-                    if (window.PointerEvent) {
-                        document.addEventListener('pointerup', handlePointerUp, { passive: true });
-                    } else {
-                        // Fallback for older browsers: guard against synthetic click after touch
-                        let lastTouch = 0;
-                        function fallbackHandler(e) {
-                            try {
-                                if (e.target && e.target.closest && e.target.closest(ignoreSelector)) return;
-                            } catch (err) {}
-                            const now = Date.now();
-                            if (e.type === 'touchend') {
-                                lastTouch = now; titleClick(); return;
-                            } else if (e.type === 'click') {
-                                // Ignore click if it closely follows a touch (synthetic click)
-                                if (now - lastTouch < 700) return;
-                                titleClick();
-                            }
-                        }
-                        document.addEventListener('touchend', fallbackHandler, { passive: true });
-                        document.addEventListener('click', fallbackHandler, { passive: true });
-                    }
-                })();
+                }
+                document.addEventListener('touchend', fallbackHandler, { passive: true });
+                document.addEventListener('click', fallbackHandler, { passive: true });
+            }
+        })();
 
         function openAdmin() {
             document.getElementById('admin-user').value = '';
@@ -3009,82 +3619,84 @@
             }
         }
 
-        function adminReset() {
-            if (!confirm('⚠️ This will permanently delete ALL leaderboard data. Are you sure?')) return;
-            localStorage.removeItem(LB_KEY);
-            renderLeaderboard();
-            document.getElementById('admin-lb-preview').innerHTML = lbTableHTML();
-            alert('✅ Leaderboard has been reset.');
+        async function adminDownloadCSV() {
+            try {
+                const res = await fetch('/api/admin/leaderboard');
+                const rows = await res.json();
+                if (!rows.length) { alert('No data to export.'); return; }
+
+                const headers = ['#', 'Player', 'STATUS', 'Time', 'date and time (game started Time)'];
+                const escape = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
+
+                let csv = headers.map(escape).join(',') + '\r\n';
+                rows.forEach((p, i) => {
+                    csv += [
+                        i + 1,
+                        escape(p.name),
+                        escape(p.status || '—'),
+                        escape(p.timeUsed ? fmtDuration(p.timeUsed) : '—'),
+                        escape(p.lastPlayed ? new Date(p.lastPlayed).toLocaleString() : '—')
+                    ].join(',') + '\r\n';
+                });
+
+                const blob = new Blob([csv], { type: 'text/csv' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `wele-chess-leaderboard-db-${new Date().toISOString().slice(0, 10)}.csv`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(url);
+            } catch (e) { alert('Download failed'); }
         }
 
-        function adminDownloadCSV() {
-            const data = lbLoad();
-            const rows = lbSorted();
-            if (!rows.length) { alert('No data to export.'); return; }
+        async function adminDownloadCredentials() {
+            try {
+                const res = await fetch('/api/admin/credentials');
+                const list = await res.json();
+                if (!list.length) { alert('No player credentials recorded yet.'); return; }
 
-            const headers = ['Rank', 'Player', 'Phone', 'Best Completion Time', 'Games Played', 'Last Played'];
-            const escape = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
+                const headers = ['#', 'Full Name', 'Phone Number', 'First Login', 'Last Login'];
+                const escape = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
 
-            let csv = headers.map(escape).join(',') + '\r\n';
-            rows.forEach((p, i) => {
-                csv += [
-                    i + 1,
-                    escape(p.name),
-                    escape(p.phone || '—'),
-                    escape(fmtDuration(p.bestTime)),
-                    p.played || 0,
-                    escape(p.lastPlayed ? fmtTime(p.lastPlayed) : '—')
-                ].join(',') + '\r\n';
-            });
+                let csv = headers.map(escape).join(',') + '\r\n';
+                list.forEach((p, i) => {
+                    csv += [
+                        i + 1,
+                        escape(p.name),
+                        escape(p.phone || '—'),
+                        escape(p.firstLogin ? new Date(p.firstLogin).toLocaleString() : '—'),
+                        escape(p.lastLogin ? new Date(p.lastLogin).toLocaleString() : '—')
+                    ].join(',') + '\r\n';
+                });
 
-            const blob = new Blob([csv], { type: 'text/csv' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `wele-chess-leaderboard-${new Date().toISOString().slice(0, 10)}.csv`;
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-            URL.revokeObjectURL(url);
-        }
-
-        function adminDownloadCredentials() {
-            let list;
-            try { list = JSON.parse(localStorage.getItem(CRED_KEY)) || []; }
-            catch (e) { list = []; }
-
-            if (!list.length) { alert('No player credentials recorded yet.'); return; }
-
-            // Sort alphabetically by name
-            list.sort((a, b) => a.name.localeCompare(b.name));
-
-            const headers = ['#', 'Full Name', 'Phone Number', 'First Login', 'Last Login'];
-            const escape = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
-
-            let csv = headers.map(escape).join(',') + '\r\n';
-            list.forEach((p, i) => {
-                csv += [
-                    i + 1,
-                    escape(p.name),
-                    escape(p.phone || '—'),
-                    escape(p.firstLogin ? fmtTime(p.firstLogin) : '—'),
-                    escape(p.lastLogin ? fmtTime(p.lastLogin) : '—')
-                ].join(',') + '\r\n';
-            });
-
-            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `wele-chess-credentials-${new Date().toISOString().slice(0, 10)}.csv`;
-            document.body.appendChild(a);
-            a.click();
-            a.remove();
-            URL.revokeObjectURL(url);
+                const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `wele-chess-credentials-db-${new Date().toISOString().slice(0, 10)}.csv`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(url);
+            } catch (e) { alert('Download failed'); }
         }
 
         function closeAdmin() {
             document.getElementById('admin-overlay').classList.remove('show');
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.error(`Error attempting to enable full-screen mode: ${err.message}`);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
         }
 
         // Call on page load
