@@ -13,7 +13,17 @@ app.use(express.static('./')); // Serve frontend files
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log('Connected to MongoDB'))
+    .then(async () => {
+        console.log('Connected to MongoDB');
+        try {
+            await mongoose.connection.collection('users').dropIndex('name_1');
+            console.log('Dropped legacy name_1 index from users');
+        } catch (e) { } // Ignore if index doesn't exist
+        try {
+            await mongoose.connection.collection('leaderboards').dropIndex('name_1');
+            console.log('Dropped legacy name_1 index from leaderboards');
+        } catch (e) { } // Ignore if index doesn't exist
+    })
     .catch(err => console.error('MongoDB connection error:', err));
 
 // --- Schemas ---
