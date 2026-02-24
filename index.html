@@ -3532,6 +3532,12 @@
         let _titleClicks = 0, _titleTimer = null;
 
         function titleClick() {
+            // Only allow triple-click logic if the login screen is currently visible
+            const loginLayout = document.getElementById('login-layout');
+            if (loginLayout && loginLayout.classList.contains('hidden')) {
+                return;
+            }
+
             _titleClicks++;
             clearTimeout(_titleTimer);
             _titleTimer = setTimeout(() => { _titleClicks = 0; }, 600);
