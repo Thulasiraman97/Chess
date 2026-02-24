@@ -3625,7 +3625,7 @@
                 const rows = await res.json();
                 if (!rows.length) { alert('No data to export.'); return; }
 
-                const headers = ['#', 'Player', 'STATUS', 'Time', 'date and time (game started Time)'];
+                const headers = ['#', 'Player', 'User Number', 'STATUS', 'Time', 'date and time (game started Time)'];
                 const escape = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
 
                 let csv = headers.map(escape).join(',') + '\r\n';
@@ -3633,6 +3633,7 @@
                     csv += [
                         i + 1,
                         escape(p.name),
+                        escape(p.phone || '—'),
                         escape(p.status || '—'),
                         escape(p.timeUsed ? fmtDuration(p.timeUsed) : '—'),
                         escape(p.lastPlayed ? new Date(p.lastPlayed).toLocaleString() : '—')
